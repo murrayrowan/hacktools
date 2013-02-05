@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @hack.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @hack.description %>
+</p>
+
+<p>
+  <b>Logo:</b>
+  <%= @hack.logo %>
+</p>
+
+
+<%= link_to 'Edit', edit_hack_path(@hack) %> |
+<%= link_to 'Back', hacks_path %>

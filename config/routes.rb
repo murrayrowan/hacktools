@@ -1,4 +1,13 @@
 Hacktools::Application.routes.draw do
+  resources :teams
+
+
+  resources :hacks
+
+
+  resources :hackers
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

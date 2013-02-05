@@ -1,0 +1,5 @@
+Using sqlite:
+rails db
+.database
+.schema
+.tables

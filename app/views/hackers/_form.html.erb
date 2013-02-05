@@ -1,0 +1,57 @@
+<%= form_for(@hacker) do |f| %>
+  <% if @hacker.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@hacker.errors.count, "error") %> prohibited this hacker from being saved:</h2>
+
+      <ul>
+      <% @hacker.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :uname %><br />
+    <%= f.text_field :uname %>
+  </div>
+  <div class="field">
+    <%= f.label :fname %><br />
+    <%= f.text_field :fname %>
+  </div>
+  <div class="field">
+    <%= f.label :lname %><br />
+    <%= f.text_field :lname %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :country %><br />
+    <%= f.text_field :country %>
+  </div>
+  <div class="field">
+    <%= f.label :company %><br />
+    <%= f.text_field :company %>
+  </div>
+  <div class="field">
+    <%= f.label :jobtitle %><br />
+    <%= f.text_field :jobtitle %>
+  </div>
+  <div class="field">
+    <%= f.label :twitter_id %><br />
+    <%= f.text_field :twitter_id %>
+  </div>
+  <div class="field">
+    <%= f.label :facebook_id %><br />
+    <%= f.text_field :facebook_id %>
+  </div>
+  <div class="field">
+    <%= f.label :dob %><br />
+    <%= f.date_select :dob %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
