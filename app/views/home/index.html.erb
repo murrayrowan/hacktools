@@ -8,12 +8,19 @@
 
 <h3><%= event.name %></h3>
 
+<p><%= event.date%>, at <%= event.time %>.</p>
+
+<p><%= event.venue %>, <%= event.street_address %>, <%= event.city %>.</p>
+
 <p><%= event.description %></p>
+
+<p>Contact <%= event.owner %> on <%= event.email %>.</p>
+
+<p>Follow us on twitter (<%= event.twitter_id %>) and Facebook (<%= event.facebook_id %>).</p>
 
 </article>
 
 <% end %>
-
 
 <h2 style="clear:left">Previous Hack Events</h2>
 <p>None yet</p>

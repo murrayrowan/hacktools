@@ -1,0 +1,10 @@
+<h2>Recent Hacks</h2>
+
+<% @hacks.each do |hack| %>
+
+<img style="float:left" src="<%= hack.logo %>" height="100" width="100" alt="logo">
+
+<h4><%= hack.name %></h4>
+<br style="clear:left">
+
+<% end %>

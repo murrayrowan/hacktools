@@ -28,7 +28,15 @@
     </div>
    </header>
     <div class="container">
-      <%= yield %>
+    <div class="row">
+    	<div class="span7">
+      		<%= yield %>
+    	</div>
+
+        <div class="span4 aside" id="sidebar">
+		<%= render "/home/sidebar" %>
+	</div>
+    </div>
     </div>
  </body>
 </html>
