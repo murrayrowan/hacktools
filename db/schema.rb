@@ -11,7 +11,41 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130205135316) do
+ActiveRecord::Schema.define(:version => 20130206115307) do
+
+  create_table "events", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.date     "date"
+    t.time     "time"
+    t.string   "logo"
+    t.string   "owner"
+    t.string   "venue"
+    t.string   "street_address"
+    t.string   "city"
+    t.string   "zipcode"
+    t.string   "email"
+    t.string   "twitter_id"
+    t.string   "facebook_id"
+    t.string   "url"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "events_hackers", :id => false, :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "hacker_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "events_hackers_teams", :id => false, :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "hacker_id"
+    t.integer  "team_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "hackers", :force => true do |t|
     t.string   "uname"
@@ -27,6 +61,13 @@ ActiveRecord::Schema.define(:version => 20130205135316) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "team_id"
+  end
+
+  create_table "hackers_hacks", :id => false, :force => true do |t|
+    t.integer  "hack_id"
+    t.integer  "hacker_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "hacks", :force => true do |t|

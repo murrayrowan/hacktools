@@ -1,2 +1,19 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h2>Upcoming Hack Events</h2>
+
+<% @events.each do |event| %>
+
+<article style="clear:left;padding:20px 0 50px 0">
+
+<img style="float:left" src="<%= event.logo %>" height="200" width="200" alt="logo">
+
+<h3><%= event.name %></h3>
+
+<p><%= event.description %></p>
+
+</article>
+
+<% end %>
+
+
+<h2 style="clear:left">Previous Hack Events</h2>
+<p>None yet</p>
