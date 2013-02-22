@@ -2,16 +2,29 @@ Hacktools::Application.routes.draw do
 
   resources :events
 
-
   get "home/index"
-
   root :to => 'home#index'
+
+  get '/events/tags/:tag', to: 'events#index'
+
+  get 'hackers/tags/:tag', to: 'hackers#index'
+
+  get 'hacks/tags/:tag', to: 'hacks#index'
+
+  get 'events/:id/hacks', to: 'hacks#index'
+
+  get 'events/:id/teams', to: 'teams#index'
+
+  get 'events/:id/hackers', to: 'hackers#index'
+
+  match 'events/:eventid/hackers/:id', to: 'hackers#show'
+
+  match '/about',   to: 'static_pages#about'
+  match '/contact', to: 'static_pages#contact'  
 
   resources :teams
 
-
   resources :hacks
-
 
   resources :hackers
 

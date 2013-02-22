@@ -1,26 +1,20 @@
 <h2>Upcoming Hack Events</h2>
 
+
+<ul class="thumbnails">
 <% @events.each do |event| %>
-
-<article style="clear:left;padding:20px 0 50px 0">
-
-<img style="float:left" src="<%= event.logo %>" height="200" width="200" alt="logo">
-
-<h3><%= event.name %></h3>
-
-<p><%= event.date%>, at <%= event.time %>.</p>
-
-<p><%= event.venue %>, <%= event.street_address %>, <%= event.city %>.</p>
-
-<p><%= event.description %></p>
-
-<p>Contact <%= event.owner %> on <%= event.email %>.</p>
-
-<p>Follow us on twitter (<%= event.twitter_id %>) and Facebook (<%= event.facebook_id %>).</p>
-
-</article>
-
+  <li class="span4">
+     <div class="thumbnail">
+     <% eurl = "/events/#{event.id}/" %>
+     <%= link_to image_tag(event.logo, alt: "#{event.name} logo", height: 200, width: 300), eurl %>
+      <h3><%= link_to "#{event.name}", eurl %></h3>
+	<p><%= event.date%>, at <%= event.time %>.</p>
+	<p><%= event.venue %>, <%= event.street_address %>, <%= event.city %>.</p>
+        <p><%= event.description %></p>
+     </div>
+  </li>
 <% end %>
+</ul>
 
 <h2 style="clear:left">Previous Hack Events</h2>
 <p>None yet</p>

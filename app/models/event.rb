@@ -23,10 +23,13 @@
 #
 
 class Event < ActiveRecord::Base
-  attr_accessible :city, :date, :description, :email, :facebook_id, :logo, :name, :owner, :street_address, :time, :twitter_id, :url, :venue, :zipcode, :country
+  attr_accessible :city, :date, :description, :email, :facebook_id, :logo, :name, :owner, :street_address, :time, :twitter_id, :url, :venue, :zipcode, :country, :tag_list
     has_many :events_hackers
     has_many :hackers, :through => :events_hackers
     has_many :hacks
     has_many :teams
+
+# add tagging gem feature
+acts_as_taggable
 
 end

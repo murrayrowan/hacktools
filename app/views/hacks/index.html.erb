@@ -1,27 +1,32 @@
-<h1>Listing hacks</h1>
+<h2>Hacks</h2>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Logo</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<ul class="thumbnails">
 
 <% @hacks.each do |hack| %>
-  <tr>
-    <td><%= hack.name %></td>
-    <td><%= hack.description %></td>
-    <td><%= hack.logo %></td>
-    <td><%= link_to 'Show', hack %></td>
-    <td><%= link_to 'Edit', edit_hack_path(hack) %></td>
-    <td><%= link_to 'Destroy', hack, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+
+  <li class="span3">
+     <div class="thumbnail">
+     <% eurl = "/hacks/#{hack.id}/" %>
+     <%= link_to image_tag(hack.logo, alt: "#{hack.name} logo", height: 200, width: 300), eurl %>
+      <h3><%= link_to "#{hack.name}", eurl %></h3>
+        <p><%= hack.description %></p>
+        <p><%= raw hack.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></p>
+        <p><%= link_to 'Show', hack %></p>
+        <p><%= link_to 'Edit', edit_hack_path(hack) %></p>
+        <p><%= link_to 'Delete', hack, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+     </div>
+  </li>
+
 <% end %>
-</table>
 
-<br />
+</ul>
 
-<%= link_to 'New Hack', new_hack_path %>
+<h3>Filter Hacks by Tag</h3>
+
+  <div id="tag_cloud">
+        <% tag_cloud Hack.tag_counts, %w[s m l] do |tag, css_class| %>
+          <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+        <% end %>
+  </div>
+
+<p><%= link_to 'Create a New Hack for this event', new_hack_path %></p>

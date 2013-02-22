@@ -1,20 +1,21 @@
+<div class="hero-unit clearfix">
+
+<div class="pull-left">
+
+<%= link_to image_tag(@hack.logo, :size => "300x200", :alt => @hack.name + " logo", :class => "img-polaroid", :style => "margin:0 20px 20px 0") %>
+
+</div>
+
+<h2><%= link_to @hack.name %></h2>
+
+  <p><%= @hack.description %></p>
+
+<%= link_to 'Edit', edit_hack_path(@hack) %>
+
+</div>
+
+
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @hack.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @hack.description %>
-</p>
-
-<p>
-  <b>Logo:</b>
-  <%= @hack.logo %>
-</p>
-
 
 <%= link_to 'Edit', edit_hack_path(@hack) %> |
 <%= link_to 'Back', hacks_path %>

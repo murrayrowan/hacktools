@@ -9,5 +9,8 @@
 #
 
 class HackersHacks < ActiveRecord::Base
-  attr_accessible :hack_id, :hacker_id
+  attr_accessible :hack_id, :hacker_id, :tag_list
+
+# add tagging gem feature
+acts_as_taggable
 end

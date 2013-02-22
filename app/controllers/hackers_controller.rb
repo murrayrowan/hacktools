@@ -2,8 +2,21 @@ class HackersController < ApplicationController
   # GET /hackers
   # GET /hackers.json
   def index
-    @hackers = Hacker.all
-    @hacks = Hack.all
+
+    if params[:tag]
+
+      @hackers = Hacker.tagged_with(params[:tag])
+
+    elsif params[:id]
+
+    # select * from hackers where id in (select hacker_id from events_hackers_teams where event_id = params[:id]);
+      @hackers = Hacker.where(id: EventsHackersTeams.select("hacker_id").where(event_id: params[:id]))
+
+    else
+
+      @hackers = Hacker.all
+
+    end
 
     respond_to do |format|
       format.html # index.html.erb

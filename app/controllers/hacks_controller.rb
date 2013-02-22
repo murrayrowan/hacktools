@@ -2,7 +2,20 @@ class HacksController < ApplicationController
   # GET /hacks
   # GET /hacks.json
   def index
-    @hacks = Hack.all
+
+    if params[:tag]
+
+      @hacks = Hack.tagged_with(params[:tag])
+
+    elsif params[:id]
+
+      @hacks = Hack.where(:event_id => params[:id])
+
+    else
+
+      @hacks = Hack.all
+
+    end
 
     respond_to do |format|
       format.html # index.html.erb

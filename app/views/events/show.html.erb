@@ -1,75 +1,38 @@
-<p id="notice"><%= notice %></p>
+<div class="hero-unit clearfix">
 
-<p>
-  <b>Name:</b>
-  <%= @event.name %>
-</p>
+<div class="pull-left">
 
-<p>
-  <b>Description:</b>
-  <%= @event.description %>
-</p>
+<%= link_to image_tag(@event.logo, :size => "300x200", :alt => @event.name + " logo", :class => "img-polaroid", :style => "margin:0 20px 20px 0"), @event.url  %>
+<br>
+<a href="<%= @event.url %>" class="btn btn-primary btn-large clearfix">Register Here</a>
 
-<p>
-  <b>Date:</b>
-  <%= @event.date %>
-</p>
+<h3>Venue</h3>
+  <address>
+    <strong><%= @event.venue %></strong>,<br>
+    <%= @event.street_address %>, 
+    <%= @event.city %>,<br>
+    <%= @event.zipcode %>
+  </address>
 
-<p>
-  <b>Time:</b>
-  <%= @event.time %>
-</p>
+</div>
 
-<p>
-  <b>Logo:</b>
-  <%= @event.logo %>
-</p>
+<h2><%= link_to @event.name, @event.url %></h2>
 
-<p>
-  <b>Owner:</b>
-  <%= @event.owner %>
-</p>
+  <p><%= @event.description %></p>
 
-<p>
-  <b>Venue:</b>
-  <%= @event.venue %>
-</p>
+  <p><%= @event.date %> at <%= @event.time %></p>
 
-<p>
-  <b>Street address:</b>
-  <%= @event.street_address %>
-</p>
+<h3>Contact</h3>
 
-<p>
-  <b>City:</b>
-  <%= @event.city %>
-</p>
+  <p>Event Contact: <%= @event.owner + ' (' + @event.email + ')' %></p>
+  <p>Twitter: <%= @event.twitter_id %></p>
+  <p>Facebook: <%= @event.facebook_id %></p>
 
-<p>
-  <b>Zipcode:</b>
-  <%= @event.zipcode %>
-</p>
+<%= link_to 'Edit', edit_event_path(@event) %>
 
-<p>
-  <b>Email:</b>
-  <%= @event.email %>
-</p>
-
-<p>
-  <b>Twitter:</b>
-  <%= @event.twitter_id %>
-</p>
-
-<p>
-  <b>Facebook:</b>
-  <%= @event.facebook_id %>
-</p>
-
-<p>
-  <b>Url:</b>
-  <%= @event.url %>
-</p>
+</div>
 
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+
+
+

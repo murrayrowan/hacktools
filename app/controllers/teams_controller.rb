@@ -2,8 +2,20 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
+
+   if params[:tag]
+      
+    @teams = Team.tagged_with(params[:tag])
+	    
+   elsif params[:id]
+		
+    @teams = Team.where(:event_id => params[:id])
+		      
+   else
+			  
     @teams = Team.all
-    @hacks = Hack.all
+		
+   end
 
     respond_to do |format|
       format.html # index.html.erb

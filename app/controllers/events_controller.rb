@@ -2,7 +2,16 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+
+    if params[:tag]
+    
+    @events = Event.tagged_with(params[:tag])
+
+    else 
+
     @events = Event.all
+    
+    end
 
     respond_to do |format|
       format.html # index.html.erb

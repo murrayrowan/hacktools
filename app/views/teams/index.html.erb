@@ -1,26 +1,24 @@
-<h1>Listing teams</h1>
+<h1>Teams</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Logo</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<ul class="thumbnails">
 
 <% @teams.each do |team| %>
-  <tr>
-    <td><%= team.name %></td>
-    <td><%= team.description %></td>
-    <td><%= team.logo %></td>
-    <td><%= link_to 'Show', team %></td>
-    <td><%= link_to 'Edit', edit_team_path(team) %></td>
-    <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+
+ <li class="span3">
+
+   <div class="thumbnail">
+    <img src="<%= team.logo %>" height="400" width="300">
+  
+    <h3><%= team.name %></h3>
+    <p><%= team.description %></p>
+    <p>Hacks: $hacknames</p>
+  </div>
+
+ </li>
+
 <% end %>
-</table>
+
+</ul>
 
 <br />
 

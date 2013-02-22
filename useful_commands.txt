@@ -3,3 +3,9 @@ rails db
 .database
 .schema
 .tables
+
+if rspec tests fail oddly with active record errors, run: 
+rake db:test:prepare
+
+# run guard to ensure tests are run on edit of files
+bundle exec guard

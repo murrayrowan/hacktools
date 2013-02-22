@@ -1,20 +1,17 @@
-<p id="notice"><%= notice %></p>
+<div class="hero-unit clearfix">
 
-<p>
-  <b>Name:</b>
-  <%= @team.name %>
-</p>
+<div class="pull-left">
 
-<p>
-  <b>Description:</b>
-  <%= @team.description %>
-</p>
+<img src="<%= @team.logo %>" height="500" width="400" alt="" style="margin:0 20px 20px 0">
 
-<p>
-  <b>Logo:</b>
-  <%= @team.logo %>
-</p>
+</div>
 
+<h2><%= @team.name %></h2>
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+<p><%= @team.description %></p>
+
+<p>Hacks: </p>
+
+<%= link_to 'Edit', edit_team_path(@team) %>
+
+</div>

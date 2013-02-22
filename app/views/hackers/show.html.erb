@@ -1,55 +1,26 @@
-<p id="notice"><%= notice %></p>
+<div class="hero-unit clearfix">
 
-<p>
-  <b>Uname:</b>
-  <%= @hacker.uname %>
-</p>
+<div class="pull-left">
 
-<p>
-  <b>Fname:</b>
-  <%= @hacker.fname %>
-</p>
+<img src="#" height="300" width="200" alt="" style="margin:0 20px 20px 0">
 
-<p>
-  <b>Lname:</b>
-  <%= @hacker.lname %>
-</p>
+</div>
 
-<p>
-  <b>City:</b>
-  <%= @hacker.city %>
-</p>
+<h2><%= @hacker.fname + ' ' + @hacker.lname %></h2>
+  
+  <p>Where I'm from: <%= @hacker.city %>, <%= @hacker.country %></p>
 
-<p>
-  <b>Country:</b>
-  <%= @hacker.country %>
-</p>
+  <p>What I do: <%= @hacker.jobtitle %>, <%= @hacker.company %></p>
 
-<p>
-  <b>Company:</b>
-  <%= @hacker.company %>
-</p>
+  <p>My Team: </p>
+  <p>My Hacks: </p>
 
-<p>
-  <b>Jobtitle:</b>
-  <%= @hacker.jobtitle %>
-</p>
-
-<p>
-  <b>Twitter:</b>
-  <%= @hacker.twitter_id %>
-</p>
-
-<p>
-  <b>Facebook:</b>
-  <%= @hacker.facebook_id %>
-</p>
-
-<p>
-  <b>Dob:</b>
-  <%= @hacker.dob %>
-</p>
+  <p>Twitter: <%= @hacker.twitter_id %></p>
+  <p>Facebook: <%= @hacker.facebook_id %></p>
 
 
-<%= link_to 'Edit', edit_hacker_path(@hacker) %> |
-<%= link_to 'Back', hackers_path %>
+<%= link_to 'Edit', edit_hacker_path(@hacker) %>
+
+
+</div>
+

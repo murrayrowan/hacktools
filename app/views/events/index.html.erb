@@ -1,9 +1,16 @@
 <h1>Listing events</h1>
 
+<div id="tag_cloud">
+	<% tag_cloud Event.tag_counts, %w[s m l] do |tag, css_class| %>
+	  <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+	<% end %>
+</div>
+
 <table>
   <tr>
-    <th>Name</th>
+    <th>E Name</th>
     <th>Description</th>
+    <th>Tags</th>
     <th>Date</th>
     <th>Time</th>
     <th>Logo</th>
@@ -25,6 +32,7 @@
   <tr>
     <td><%= event.name %></td>
     <td><%= event.description %></td>
+    <td><%= raw event.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td> 
     <td><%= event.date %></td>
     <td><%= event.time %></td>
     <td><%= event.logo %></td>
