@@ -1,0 +1,251 @@
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Started GET "/" for 127.0.0.1 at 2013-02-12 15:00:44 +0000
+Processing by HomeController#index as HTML
+Completed 500 Internal Server Error in 27ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Started GET "/" for 127.0.0.1 at 2013-02-12 15:02:56 +0000
+Processing by HomeController#index as HTML
+Completed 500 Internal Server Error in 1ms
+  [1m[35m (0.0ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Started GET "/events" for 127.0.0.1 at 2013-02-12 15:08:22 +0000
+Processing by EventsController#index as HTML
+Completed 500 Internal Server Error in 1ms
+  [1m[35m (0.0ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Started GET "/events" for 127.0.0.1 at 2013-02-12 15:11:40 +0000
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" 
+  [1m[36mActsAsTaggableOn::Tag Load (0.2ms)[0m  [1mSELECT tags.*, taggings.tags_count AS count FROM "tags" JOIN (SELECT taggings.tag_id, COUNT(taggings.tag_id) AS tags_count FROM "taggings" INNER JOIN events ON events.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Event' AND taggings.context = 'tags') AND (taggings.taggable_id IN(SELECT events.id FROM "events" )) GROUP BY taggings.tag_id HAVING COUNT(taggings.tag_id) > 0) AS taggings ON taggings.tag_id = tags.id[0m
+  Rendered events/index.html.erb within layouts/application (13.1ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 31ms (Views: 29.4ms | ActiveRecord: 0.5ms)
+Started GET "/events" for 127.0.0.1 at 2013-02-12 15:11:40 +0000
+Processing by EventsController#index as HTML
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" 
+  [1m[36mActsAsTaggableOn::Tag Load (0.1ms)[0m  [1mSELECT tags.*, taggings.tags_count AS count FROM "tags" JOIN (SELECT taggings.tag_id, COUNT(taggings.tag_id) AS tags_count FROM "taggings" INNER JOIN events ON events.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Event' AND taggings.context = 'tags') AND (taggings.taggable_id IN(SELECT events.id FROM "events" )) GROUP BY taggings.tag_id HAVING COUNT(taggings.tag_id) > 0) AS taggings ON taggings.tag_id = tags.id[0m
+  Rendered events/index.html.erb within layouts/application (1.1ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Started GET "/" for 127.0.0.1 at 2013-02-12 15:12:12 +0000
+Processing by HomeController#index as HTML
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" 
+  Rendered home/index.html.erb within layouts/application (2.3ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 40ms (Views: 39.5ms | ActiveRecord: 0.1ms)
+Started GET "/events" for 127.0.0.1 at 2013-02-12 15:12:12 +0000
+Processing by EventsController#index as HTML
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT "events".* FROM "events" [0m
+  [1m[35mActsAsTaggableOn::Tag Load (0.2ms)[0m  SELECT tags.*, taggings.tags_count AS count FROM "tags" JOIN (SELECT taggings.tag_id, COUNT(taggings.tag_id) AS tags_count FROM "taggings" INNER JOIN events ON events.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Event' AND taggings.context = 'tags') AND (taggings.taggable_id IN(SELECT events.id FROM "events" )) GROUP BY taggings.tag_id HAVING COUNT(taggings.tag_id) > 0) AS taggings ON taggings.tag_id = tags.id
+  Rendered events/index.html.erb within layouts/application (10.2ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.1ms)
+  Rendered layouts/_footer.html.erb (0.0ms)
+Completed 200 OK in 13ms (Views: 11.8ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Started GET "/" for 127.0.0.1 at 2013-02-12 16:23:52 +0000
+Processing by HomeController#index as HTML
+  [1m[35mEvent Load (0.4ms)[0m  SELECT "events".* FROM "events" 
+  Rendered home/index.html.erb within layouts/application (2.5ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 42ms (Views: 40.8ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Started GET "/" for 127.0.0.1 at 2013-02-12 16:25:10 +0000
+Processing by HomeController#index as HTML
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" 
+  Rendered home/index.html.erb within layouts/application (1.9ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 15ms (Views: 14.1ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Started GET "/" for 127.0.0.1 at 2013-02-12 16:25:43 +0000
+Processing by HomeController#index as HTML
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" 
+  Rendered home/index.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 41ms (Views: 39.7ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Started GET "/" for 127.0.0.1 at 2013-02-12 16:26:12 +0000
+Processing by HomeController#index as HTML
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" 
+  Rendered home/index.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 40ms (Views: 39.6ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Started GET "/" for 127.0.0.1 at 2013-02-12 16:28:03 +0000
+Processing by HomeController#index as HTML
+  [1m[35mEvent Load (0.1ms)[0m  SELECT "events".* FROM "events" 
+  Rendered home/index.html.erb within layouts/application (1.9ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 15ms (Views: 14.3ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Started GET "/hackers" for 127.0.0.1 at 2013-02-12 16:28:14 +0000
+Processing by HackersController#index as HTML
+  [1m[35mHacker Load (1.7ms)[0m  SELECT "hackers".* FROM "hackers" 
+  [1m[36mActsAsTaggableOn::Tag Load (0.2ms)[0m  [1mSELECT tags.*, taggings.tags_count AS count FROM "tags" JOIN (SELECT taggings.tag_id, COUNT(taggings.tag_id) AS tags_count FROM "taggings" INNER JOIN hackers ON hackers.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Hacker' AND taggings.context = 'tags') AND (taggings.taggable_id IN(SELECT hackers.id FROM "hackers" )) GROUP BY taggings.tag_id HAVING COUNT(taggings.tag_id) > 0) AS taggings ON taggings.tag_id = tags.id[0m
+  Rendered hackers/index.html.erb within layouts/application (12.9ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 28ms (Views: 25.1ms | ActiveRecord: 2.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Started GET "/teams" for 127.0.0.1 at 2013-02-12 16:29:10 +0000
+Processing by TeamsController#index as HTML
+  [1m[35mTeam Load (1.4ms)[0m  SELECT "teams".* FROM "teams" 
+  Rendered teams/index.html.erb within layouts/application (25.2ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 41ms (Views: 37.9ms | ActiveRecord: 1.6ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Started GET "/hacks" for 127.0.0.1 at 2013-02-12 16:29:57 +0000
+Processing by HacksController#index as HTML
+  [1m[35mHack Load (2.1ms)[0m  SELECT "hacks".* FROM "hacks" 
+  [1m[36mActsAsTaggableOn::Tag Load (0.2ms)[0m  [1mSELECT tags.*, taggings.tags_count AS count FROM "tags" JOIN (SELECT taggings.tag_id, COUNT(taggings.tag_id) AS tags_count FROM "taggings" INNER JOIN hacks ON hacks.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Hack' AND taggings.context = 'tags') AND (taggings.taggable_id IN(SELECT hacks.id FROM "hacks" )) GROUP BY taggings.tag_id HAVING COUNT(taggings.tag_id) > 0) AS taggings ON taggings.tag_id = tags.id[0m
+  Rendered hacks/index.html.erb within layouts/application (34.9ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 51ms (Views: 47.7ms | ActiveRecord: 2.5ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Started GET "/events/1" for 127.0.0.1 at 2013-02-12 16:34:01 +0000
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1  [["id", "1"]]
+Completed 404 Not Found in 2ms
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Started GET "/events/1/hacks" for 127.0.0.1 at 2013-02-12 16:34:01 +0000
+Processing by HacksController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mActsAsTaggableOn::Tag Load (0.2ms)[0m  [1mSELECT tags.*, taggings.tags_count AS count FROM "tags" JOIN (SELECT taggings.tag_id, COUNT(taggings.tag_id) AS tags_count FROM "taggings" INNER JOIN hacks ON hacks.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Hack' AND taggings.context = 'tags') AND (taggings.taggable_id IN(SELECT hacks.id FROM "hacks" )) GROUP BY taggings.tag_id HAVING COUNT(taggings.tag_id) > 0) AS taggings ON taggings.tag_id = tags.id[0m
+  [1m[35mHack Load (0.0ms)[0m  SELECT "hacks".* FROM "hacks" WHERE "hacks"."event_id" = 1
+  Rendered hacks/index.html.erb within layouts/application (12.1ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 58ms (Views: 48.9ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Started GET "/events/1" for 127.0.0.1 at 2013-02-12 16:35:10 +0000
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1  [["id", "1"]]
+Completed 404 Not Found in 2ms
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Started GET "/events/1/hacks" for 127.0.0.1 at 2013-02-12 16:35:10 +0000
+Processing by HacksController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mActsAsTaggableOn::Tag Load (0.2ms)[0m  [1mSELECT tags.*, taggings.tags_count AS count FROM "tags" JOIN (SELECT taggings.tag_id, COUNT(taggings.tag_id) AS tags_count FROM "taggings" INNER JOIN hacks ON hacks.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Hack' AND taggings.context = 'tags') AND (taggings.taggable_id IN(SELECT hacks.id FROM "hacks" )) GROUP BY taggings.tag_id HAVING COUNT(taggings.tag_id) > 0) AS taggings ON taggings.tag_id = tags.id[0m
+  [1m[35mHack Load (0.0ms)[0m  SELECT "hacks".* FROM "hacks" WHERE "hacks"."event_id" = 1
+  Rendered hacks/index.html.erb within layouts/application (12.0ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 54ms (Views: 48.1ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Started GET "/events/1" for 127.0.0.1 at 2013-02-12 16:37:05 +0000
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1  [["id", "1"]]
+Completed 404 Not Found in 2ms
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Started GET "/events/1/hacks" for 127.0.0.1 at 2013-02-12 16:37:05 +0000
+Processing by HacksController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mActsAsTaggableOn::Tag Load (0.2ms)[0m  [1mSELECT tags.*, taggings.tags_count AS count FROM "tags" JOIN (SELECT taggings.tag_id, COUNT(taggings.tag_id) AS tags_count FROM "taggings" INNER JOIN hacks ON hacks.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Hack' AND taggings.context = 'tags') AND (taggings.taggable_id IN(SELECT hacks.id FROM "hacks" )) GROUP BY taggings.tag_id HAVING COUNT(taggings.tag_id) > 0) AS taggings ON taggings.tag_id = tags.id[0m
+  [1m[35mHack Load (0.0ms)[0m  SELECT "hacks".* FROM "hacks" WHERE "hacks"."event_id" = 1
+  Rendered hacks/index.html.erb within layouts/application (35.4ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 53ms (Views: 47.3ms | ActiveRecord: 0.4ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+Started GET "/events/1/hacks" for 127.0.0.1 at 2013-02-12 16:41:48 +0000
+Processing by HacksController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mActsAsTaggableOn::Tag Load (0.2ms)[0m  SELECT tags.*, taggings.tags_count AS count FROM "tags" JOIN (SELECT taggings.tag_id, COUNT(taggings.tag_id) AS tags_count FROM "taggings" INNER JOIN hacks ON hacks.id = taggings.taggable_id WHERE (taggings.taggable_type = 'Hack' AND taggings.context = 'tags') AND (taggings.taggable_id IN(SELECT hacks.id FROM "hacks" )) GROUP BY taggings.tag_id HAVING COUNT(taggings.tag_id) > 0) AS taggings ON taggings.tag_id = tags.id
+  [1m[36mHack Load (0.0ms)[0m  [1mSELECT "hacks".* FROM "hacks" WHERE "hacks"."event_id" = 1[0m
+  Rendered hacks/index.html.erb within layouts/application (34.7ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 53ms (Views: 46.6ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Started GET "/events/2" for 127.0.0.1 at 2013-02-12 16:41:49 +0000
+Processing by EventsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE "events"."id" = ? LIMIT 1  [["id", "2"]]
+Completed 404 Not Found in 1ms
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m

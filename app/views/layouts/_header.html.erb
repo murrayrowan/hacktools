@@ -1,0 +1,19 @@
+
+<header class="navbar navbar-fixed-top navbar-inverse">
+       <div class="navbar-inner">
+       <div class="container">
+       <h1 id="logo"><a href="/">Hack Tools</a></h1>
+       <nav>
+         <ul class="nav pull-right">
+            <% unless request.fullpath == '/' %>
+              <li><%= link_to "Hackers", nav_url_builder() + '/hackers/' %></li>
+              <li><%= link_to "Teams", nav_url_builder() + '/teams/' %></li>
+              <li><%= link_to "Hacks", nav_url_builder() + '/hacks/' %></li>
+            <% end %>
+              <li><%= link_to "Sign in", '/signin/' %></li>
+              <li><%= link_to "About",  '/about/' %></li>
+         </ul>
+       </nav>
+      </div>
+    </div>
+   </header>
