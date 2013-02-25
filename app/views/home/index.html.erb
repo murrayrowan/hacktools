@@ -1,17 +1,18 @@
 <h2>Upcoming Hack Events</h2>
 
-
 <ul class="thumbnails">
 <% @events.each do |event| %>
   <li class="span4">
      <div class="thumbnail">
-     <% eurl = "/events/#{event.id}/" %>
+     <% eurl = "/events/#{event.id}/" + prep_string_for_url(event.name) %>
      <%= link_to image_tag(event.logo, alt: "#{event.name} logo", height: 200, width: 300), eurl %>
       <h3><%= link_to "#{event.name}", eurl %></h3>
 	<p><%= event.date%>, at <%= event.time %>.</p>
 	<p><%= event.venue %>, <%= event.street_address %>, <%= event.city %>.</p>
         <p><%= event.description %></p>
-     </div>
+  <div>
+    <a href="<%= event.url %>" class="btn btn-primary btn-small clearfix">Register Here</a></div>
+  </div>
   </li>
 <% end %>
 </ul>

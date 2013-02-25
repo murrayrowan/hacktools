@@ -6,9 +6,9 @@
        <nav>
          <ul class="nav pull-right">
             <% unless request.fullpath == '/' %>
-              <li><%= link_to "Hackers", nav_url_builder() + '/hackers/' %></li>
-              <li><%= link_to "Teams", nav_url_builder() + '/teams/' %></li>
-              <li><%= link_to "Hacks", nav_url_builder() + '/hacks/' %></li>
+              <li><a href="/events/<%= @event.id %>/<%= prep_string_for_url(@event.name) %>/hacks/">Hacks</a></li>
+              <li><a href="/events/<%= @event.id %>/<%= prep_string_for_url(@event.name) %>/hackers/">Hackers</a></li>
+              <li><a href="/events/<%= @event.id %>/<%= prep_string_for_url(@event.name) %>/teams/">Teams</a></li>
             <% end %>
               <li><%= link_to "Sign in", '/signin/' %></li>
               <li><%= link_to "About",  '/about/' %></li>

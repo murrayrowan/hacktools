@@ -1,3 +1,5 @@
+<h2><%= @event.name %></h2>
+
 <div class="hero-unit clearfix">
 
 <div class="pull-left">
@@ -27,8 +29,6 @@
   <p>Event Contact: <%= @event.owner + ' (' + @event.email + ')' %></p>
   <p>Twitter: <%= @event.twitter_id %></p>
   <p>Facebook: <%= @event.facebook_id %></p>
-
-<%= link_to 'Edit', edit_event_path(@event) %>
 
 </div>
 

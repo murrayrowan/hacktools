@@ -2,14 +2,18 @@ class HacksController < ApplicationController
   # GET /hacks
   # GET /hacks.json
   def index
-
+    @event = Event.find(params[:id])
+    
     if params[:tag]
 
       @hacks = Hack.tagged_with(params[:tag])
 
     elsif params[:id]
 
-      @hacks = Hack.where(:event_id => params[:id])
+    # select * from hacks where id in (select hack_id from events_hackers_hacks_teams where event_id = params[:id]);
+    @hacks = Hack.where(id: EventsHackersHacksTeams.select("hack_id").where(event_id: params[:id]))
+  
+      #@hacks = Hack.where(:id => params[:id])
 
     else
 
@@ -26,7 +30,8 @@ class HacksController < ApplicationController
   # GET /hacks/1
   # GET /hacks/1.json
   def show
-    @hack = Hack.find(params[:id])
+    @hack = Hack.find(params[:hack_id])
+    @event = Event.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

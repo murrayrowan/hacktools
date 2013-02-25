@@ -1,32 +1,39 @@
 Hacktools::Application.routes.draw do
 
-  resources :events
-
-  get "home/index"
+  #get "home/index"
   root :to => 'home#index'
 
-  get '/events/tags/:tag', to: 'events#index'
+  # redirect /events to /, so that we don't have duplication with homepage
+  match '/events', :to => redirect("/")
 
-  get 'hackers/tags/:tag', to: 'hackers#index'
+  # routes to show hackers and hacks within the event context, 
+  # rather than globally, which is currently disabled
 
-  get 'hacks/tags/:tag', to: 'hacks#index'
+  get 'events/:id/:event_name', to: 'events#show'
 
-  get 'events/:id/hacks', to: 'hacks#index'
+  get 'events/:id/:event_name/hacks', to: 'hacks#index'
 
-  get 'events/:id/teams', to: 'teams#index'
+  get 'events/:id/:event_name/hacks/:hack_id/:hack_name', to: 'hacks#show'
 
-  get 'events/:id/hackers', to: 'hackers#index'
+  get 'events/:id/:event_name/hackers', to: 'hackers#index'
 
-  match 'events/:eventid/hackers/:id', to: 'hackers#show'
+  get 'events/:id/:event_name/hackers/:hacker_id/:hacker_name', to: 'hackers#show'
 
-  match '/about',   to: 'static_pages#about'
-  match '/contact', to: 'static_pages#contact'  
+  get 'events/:id/:event_name/teams/', to: 'teams#index'
 
-  resources :teams
+  get 'events/:id/:event_name/teams/:team_id/:team_name', to: 'teams#show'
 
-  resources :hacks
+  # tag routes
 
-  resources :hackers
+  get 'events/:id/:event_name/hackers/with/tag/:tag/', to: 'hackers#index', as: :hacker_tag
+
+  get 'events/:id/:event_name/hacks/with/tag/:tag/', to: 'hacks#index', as: :hack_tag
+
+  get 'events/:id/:event_name/events/with/tag/:tag/', to: 'home#index', as: :event_tag
+
+  # static pages
+  match '/about',   to: 'static_pages#about', :via => [:get]
+  match '/contact', to: 'static_pages#contact', :via => [:get] 
 
 
   # The priority is based upon order of creation:

@@ -4,20 +4,25 @@ module ApplicationHelper
 # from those on the global level
 # e.g. <li><%= link_to "Hackers", nav_url_builder() %></li>
 
-  def nav_url_builder
-    
-    uri_base = 'http://' + request.env["HTTP_HOST"]
+  def url_builder(bits)
 
-    # if the url path starts with '/events'
-    # return the path with /events/id in it
-    if /^\/events/ =~ request.fullpath
-      uri_base + '/events' + '/' + params['id']
-    else
-    # else just return an empty string, 
-    # which is effectively the same as url_base anyway
-      '' 
-    end
+  base =  '/events/' + params['id'] + '/' + params['event_name']
+  base + bits
+  
+  end
+
+  def prep_string_for_url(str)
+    
+    url_name = str.downcase
+    url_name = url_name.gsub(/[^0-9A-Za-z\s]/, '')
+    url_name.gsub(/\s+/, '-')
 
   end
 
-end
+  def rtag_path(tag)
+
+    request.fullpath + 'tags/' + tag
+  
+  end
+
+  end 

@@ -1,4 +1,4 @@
-<h1>Teams</h1>
+<h2>Teams at <%= @event.name %></h2>
 
 <ul class="thumbnails">
 
@@ -7,9 +7,9 @@
  <li class="span3">
 
    <div class="thumbnail">
-    <img src="<%= team.logo %>" height="400" width="300">
-  
-    <h3><%= team.name %></h3>
+  <% turl = url_builder("/teams/#{team.id}/" + prep_string_for_url(team.name) + '/') %>
+  <%= link_to image_tag(team.logo, alt: "#{team.name} logo", height: 400, width: 300), turl %>
+  <h3><%= link_to "#{team.name}", turl %></h3>
     <p><%= team.description %></p>
     <p>Hacks: $hacknames</p>
   </div>
@@ -19,7 +19,3 @@
 <% end %>
 
 </ul>
-
-<br />
-
-<%= link_to 'New Team', new_team_path %>

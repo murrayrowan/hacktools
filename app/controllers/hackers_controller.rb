@@ -1,7 +1,9 @@
 class HackersController < ApplicationController
+ 
   # GET /hackers
   # GET /hackers.json
   def index
+  @event = Event.find(params[:id])
 
     if params[:tag]
 
@@ -10,8 +12,7 @@ class HackersController < ApplicationController
     elsif params[:id]
 
     # select * from hackers where id in (select hacker_id from events_hackers_teams where event_id = params[:id]);
-      @hackers = Hacker.where(id: EventsHackersTeams.select("hacker_id").where(event_id: params[:id]))
-
+      @hackers = Hacker.where(id: EventsHackersHacksTeams.select("hacker_id").where(event_id: params[:id]))
     else
 
       @hackers = Hacker.all
@@ -27,8 +28,10 @@ class HackersController < ApplicationController
   # GET /hackers/1
   # GET /hackers/1.json
   def show
-    @hacker = Hacker.find(params[:id])
 
+    @hacker = Hacker.find(params[:hacker_id])
+    @event = Event.find(params[:id])
+  
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @hacker }

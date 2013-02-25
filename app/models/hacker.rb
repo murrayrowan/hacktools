@@ -19,15 +19,13 @@
 #
 
 class Hacker < ActiveRecord::Base
-  attr_accessible :city, :company, :country, :dob, :facebook_id, :fname, :jobtitle, :lname, :twitter_id, :uname, :team_id, :tag_list
+  attr_accessible :city, :company, :country, :dob, :fname, :jobtitle, :lname, :twitter_id, :tag_list
 
 # many to many relationships through join tables
-  has_many :hackers_hacks
-  has_many :hacks, :through => :hackers_hacks 
-  has_many :events, :through => :events_hackers
-  has_many :events_hackers
-  has_many :teams, :through => :hackers_teams_events
-  has_many :events_hackers_teams
+  has_many :events_hackers_hacks_teams
+  has_many :hacks, :through => :events_hackers_hacks_teams 
+  has_many :events, :through => :events_hackers_hacks_teams 
+  has_many :teams, :through => :events_hackers_hacks_teams 
 
 # add tagging gem feature
 acts_as_taggable

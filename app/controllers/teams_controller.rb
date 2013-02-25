@@ -2,12 +2,16 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
-
+  @event = Event.find(params[:id])
+  
    if params[:tag]
       
     @teams = Team.tagged_with(params[:tag])
 	    
    elsif params[:id]
+
+      # select * from teams where id in (select team_id from events_hackers_hacks_teams where event_id = params[:id]);
+      @hackers = Team.where(id: EventsHackersHacksTeams.select("team_id").where(event_id: params[:id]))
 		
     @teams = Team.where(:event_id => params[:id])
 		      
@@ -26,8 +30,9 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
-    @team = Team.find(params[:id])
-
+    @team = Team.find(params[:team_id])
+    @event = Event.find(params[:id])
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @team }
