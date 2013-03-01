@@ -32,8 +32,9 @@ Hacktools::Application.routes.draw do
   get 'events/:id/:event_name/events/with/tag/:tag/', to: 'home#index', as: :event_tag
 
   # static pages
-  match '/about',   to: 'static_pages#about', :via => [:get]
+  match '/about',   to: 'static_pages#about', :via => [:get], as: :about
   match '/contact', to: 'static_pages#contact', :via => [:get] 
+  match '/signin', to: 'static_pages#signin', :via => [:get] 
 
 
   # The priority is based upon order of creation:

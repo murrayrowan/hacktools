@@ -34,4 +34,7 @@ Hacktools::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  #log sql to console
+  config.active_record.logger = Logger.new(STDOUT)
 end

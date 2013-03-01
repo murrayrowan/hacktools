@@ -1,11 +1,10 @@
-
-<header class="navbar navbar-fixed-top navbar-inverse">
+  <header class="navbar navbar-fixed-top navbar-inverse">
        <div class="navbar-inner">
        <div class="container">
        <h1 id="logo"><a href="/">Hack Tools</a></h1>
        <nav>
          <ul class="nav pull-right">
-            <% unless request.fullpath == '/' %>
+            <% if defined?(@event.id) %>
               <li><a href="/events/<%= @event.id %>/<%= prep_string_for_url(@event.name) %>/hacks/">Hacks</a></li>
               <li><a href="/events/<%= @event.id %>/<%= prep_string_for_url(@event.name) %>/hackers/">Hackers</a></li>
               <li><a href="/events/<%= @event.id %>/<%= prep_string_for_url(@event.name) %>/teams/">Teams</a></li>
@@ -17,3 +16,4 @@
       </div>
     </div>
    </header>
+   

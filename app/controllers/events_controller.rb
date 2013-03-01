@@ -9,8 +9,9 @@ class EventsController < ApplicationController
 
     else 
 
-    @events = Event.all
-    
+    #@events = Event.all
+    #@events = Event.find(:all, conditions => :time < Time.now )
+
     end
 
     respond_to do |format|

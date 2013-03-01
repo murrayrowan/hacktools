@@ -9,9 +9,16 @@
    <%= render 'layouts/shim' %>
  </head>
   <body>
+
   <%= render 'layouts/header' %>
   <div class="container">
-
+  
+  <%= render 'layouts/breadcrumb' %>
+  
+  <% if defined?(@event.name) %>
+  <h2><%= @event.name %></h2>
+  <% end %>
+  
     <%= yield %>
 
     <%= render 'layouts/footer' %>

@@ -1,0 +1,12 @@
+# Hacks test data
+#CREATE TABLE "hacks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" varchar(255), "logo" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "team_id" integer, "event_id" integer);
+#
+bingo:
+  id: NULL
+  name: Flickr Bingo
+  description: Bingo with Flickr Images
+  logo: 'http://www.justfixit.co.uk/wp-content/uploads/2012/07/yahoo.png'
+  created_at: date()
+  updated_at: date()
+  team_id: NULL
+  event_id: NULL

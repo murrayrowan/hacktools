@@ -25,4 +25,39 @@ module ApplicationHelper
   
   end
 
+  def build_breadcrumb
+
+    s = ""
+    prev_level=''
+    url = request.path.split('?')  #remove extra query string parameters
+    levels = url[0].split('/') #break up url into different levels
+
+    levels.each_with_index do |level, index|
+      unless level.blank?
+
+        name = level.gsub(/-/, ' ').capitalize.split.each { |x| print x.capitalize!, " "}.join(" ")
+
+        if index == levels.size-1 || 
+           (level == levels[levels.size-2] && levels[levels.size-1].to_i > 0)
+          name = 'Tagged with "' + name + '"' if prev_level == 'tag'
+          s += "<li>#{name}</li>\n" unless level.to_i > 0
+
+        else
+            link = "/"
+            i = 1
+            while i <= index
+              link += "#{levels[i]}/"
+              i+=1
+            end
+            # load s for printing the next link unless it's a number and therefore an id
+            s += "<li><a href=\"#{link}\">#{name}</a><span class='divider'>/</span></li>\n" unless (level =~ /^\d+$/ || level == 'with' || level == 'tag')
+            prev_level = level
+        end
+      end
+    
+    end
+    raw s
+
+  end
+
   end 

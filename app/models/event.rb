@@ -5,7 +5,6 @@
 #  id             :integer          not null, primary key
 #  name           :string(255)
 #  description    :text
-#  date           :date
 #  time           :time
 #  logo           :string(255)
 #  owner          :string(255)
@@ -23,7 +22,7 @@
 #
 
 class Event < ActiveRecord::Base
-  attr_accessible :city, :date, :description, :email, :facebook_id, :logo, :name, :owner, :street_address, :time, :twitter_id, :url, :venue, :zipcode, :country, :tag_list
+  attr_accessible :city, :description, :email, :facebook_id, :logo, :name, :owner, :street_address, :time, :twitter_id, :url, :venue, :zipcode, :country, :tag_list
     has_many :events_hackers
     has_many :hackers, :through => :events_hackers_hacks_teams
     has_many :hacks, :through => :events_hackers_hacks_teams

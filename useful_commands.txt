@@ -9,3 +9,6 @@ rake db:test:prepare
 
 # run guard to ensure tests are run on edit of files
 bundle exec guard
+
+#db
+insert into hackers values(NULL,'Ted','Drake','San Francisco','USA','Intuit','A11y advocate','tdrake',1960-05-20,datetime('now'),datetime('now'));
