@@ -24,3 +24,6 @@ tmp/cache/assets/
  .DS_Store
  .idea
  tmp/pids/server.pid
+
+*.DS_Store
+*/cache/*

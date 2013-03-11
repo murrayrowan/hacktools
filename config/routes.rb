@@ -1,5 +1,11 @@
 Hacktools::Application.routes.draw do
 
+  match '/auth/:provider/callback' => 'authentications#create'
+
+  resources :authentications
+
+  devise_for :users, :controllers => {:registrations => 'registrations'}
+
   #get "home/index"
   root :to => 'home#index'
 
@@ -34,8 +40,6 @@ Hacktools::Application.routes.draw do
   # static pages
   match '/about',   to: 'static_pages#about', :via => [:get], as: :about
   match '/contact', to: 'static_pages#contact', :via => [:get] 
-  match '/signin', to: 'static_pages#signin', :via => [:get] 
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

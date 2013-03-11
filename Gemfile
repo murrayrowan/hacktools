@@ -3,6 +3,11 @@ ruby "1.9.2"
 
 gem 'rails', '3.2.11'
 gem 'bootstrap-sass', '2.1'
+gem 'nifty-generators'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem "authbuttons-rails"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -56,3 +61,5 @@ gem 'acts-as-taggable-on'
 
 # To use debugger
 # gem 'ruby-debug'
+
+gem "mocha", :group => :test

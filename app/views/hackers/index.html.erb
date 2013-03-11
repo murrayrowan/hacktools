@@ -15,7 +15,7 @@
         <p>Team: $teamname</p>
         <p>Hacks: $hacknames</p>  
 
-        <p>My tags: <%= raw hacker.tag_list.map { |t| link_to t, url_builder( "/hackers/with/tags/#{t}/") }.join(', ') %></p>
+        <p>My tags: <%= raw hacker.tag_list.map { |t| link_to t, url_builder( "/hackers/with/tag/#{t}/") }.join(', ') %></p>
 
         <p><a href="https://twitter.com/<%= hacker.twitter_id %>"><%= hacker.twitter_id %> on twitter</a></p>
 
