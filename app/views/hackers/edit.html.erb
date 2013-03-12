@@ -1,6 +1,14 @@
-<h1>Editing hacker</h1>
+<h1>Update Your Profile</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @hacker %> |
-<%= link_to 'Back', hackers_path %>
+<%= simple_form_for(@hacker, :url => hacker_path + "/update", :method => :put, :html => {:class => 'form-horizontal' }) do |f| %>
+<%= f.error_notification %>
+  <%= f.input :fname, label: "First Name" %>
+  <%= f.input :lname, label: "Last Name" %>
+  <%= f.input :city %>
+  <%= f.input :country %>
+  <%= f.input :twitter_id %>
+  <%= f.input :jobtitle, label: "Job Title" %>
+  <%= f.input :company %>
+  <%= f.error :base %>
+  <%= f.button :submit %>
+<% end %>

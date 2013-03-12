@@ -7,15 +7,17 @@
 </div>
 
 <h2><%= @hacker.fname + ' ' + @hacker.lname %></h2>
-  
+
   <p>Where I'm from: <%= @hacker.city %>, <%= @hacker.country %></p>
 
-  <p>What I do: <%= @hacker.jobtitle %>, <%= @hacker.company %></p>
+  <p>What I do: <%= @hacker.jobtitle %> at <%= @hacker.company %></p>
 
   <p>My Team: </p>
   <p>My Hacks: </p>
 
   <p>Twitter: <%= @hacker.twitter_id %></p>
+  
+  <a href="<%= request.fullpath + "/edit" %>">Edit your profile</a>
 
 </div>
 

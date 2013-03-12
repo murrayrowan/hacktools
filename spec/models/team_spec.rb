@@ -8,6 +8,8 @@
 #  logo        :string(255)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  event_id    :integer
+#  photo       :string(255)
 #
 
 require 'spec_helper'

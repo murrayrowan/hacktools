@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: hacks
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  description :string(255)
+#  logo        :string(255)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  team_id     :integer
+#  event_id    :integer
+#
+
 # Hacks test data
 #CREATE TABLE "hacks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" varchar(255), "logo" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "team_id" integer, "event_id" integer);
 #

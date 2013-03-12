@@ -51,7 +51,7 @@ class HackersController < ApplicationController
 
   # GET /hackers/1/edit
   def edit
-    @hacker = Hacker.find(params[:id])
+    @hacker = Hacker.find(params[:hacker_id])
   end
 
   # POST /hackers
@@ -70,10 +70,9 @@ class HackersController < ApplicationController
     end
   end
 
-  # PUT /hackers/1
-  # PUT /hackers/1.json
+  # PUT 
   def update
-    @hacker = Hacker.find(params[:id])
+    @hacker = Hacker.find(params[:hacker_id])
 
     respond_to do |format|
       if @hacker.update_attributes(params[:hacker])

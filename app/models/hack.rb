@@ -9,10 +9,11 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  team_id     :integer
+#  event_id    :integer
 #
 
 class Hack < ActiveRecord::Base
-  attr_accessible :description, :logo, :name, :team_id, :event_id, :tag_list
+  attr_accessible :id, :description, :logo, :name, :team_id, :event_id, :tag_list
 
 # many to many relationships though join table
   has_many :hackers, :through => :events_hackers_hacks_teams
@@ -24,9 +25,5 @@ class Hack < ActiveRecord::Base
 
 # add tagging gem details
 acts_as_taggable
-
-  def from_event(event_id)
-   # get hacks from specific event 
-  end
 
 end

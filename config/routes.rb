@@ -15,7 +15,21 @@ Hacktools::Application.routes.draw do
   # routes to show hackers and hacks within the event context, 
   # rather than globally, which is currently disabled
 
+ # This format wouldn't allow me to add :eventname, :teamname, :hackername to the urls 
+ # resources :events do
+ #   resources :hacks
+ #   resources :hackers
+ #   resources :teams
+ # end
+
+ # using longwinded format for reason specified above
+ #
+ # EVENTS
+ # EVENTS INDEX IS HOMEPAGE
   get 'events/:id/:event_name', to: 'events#show'
+
+
+# HACKS
 
   get 'events/:id/:event_name/hacks', to: 'hacks#index'
 
@@ -23,7 +37,15 @@ Hacktools::Application.routes.draw do
 
   get 'events/:id/:event_name/hackers', to: 'hackers#index'
 
-  get 'events/:id/:event_name/hackers/:hacker_id/:hacker_name', to: 'hackers#show'
+# HACKERS
+
+  match 'events/:id/:event_name/hackers/:hacker_id/:hacker_name', to: 'hackers#show', as: :hacker
+
+  get 'events/:id/:event_name/hackers/:hacker_id/:hacker_name/edit', to: 'hackers#edit'
+
+  put 'events/:id/:event_name/hackers/:hacker_id/:hacker_name/update', to: 'hackers#update'
+
+# TEAMS
 
   get 'events/:id/:event_name/teams/', to: 'teams#index'
 

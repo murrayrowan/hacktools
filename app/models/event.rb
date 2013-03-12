@@ -23,7 +23,7 @@
 
 class Event < ActiveRecord::Base
   attr_accessible :city, :description, :email, :facebook_id, :logo, :name, :owner, :street_address, :time, :twitter_id, :url, :venue, :zipcode, :country, :tag_list
-    has_many :events_hackers
+    has_many :events_hackers_hacks_teams
     has_many :hackers, :through => :events_hackers_hacks_teams
     has_many :hacks, :through => :events_hackers_hacks_teams
     has_many :teams, :through => :events_hackers_hacks_teams

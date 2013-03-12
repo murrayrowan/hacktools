@@ -8,6 +8,8 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem "authbuttons-rails"
+gem 'simple_form'
+gem "country-select"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

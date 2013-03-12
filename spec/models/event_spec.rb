@@ -5,7 +5,6 @@
 #  id             :integer          not null, primary key
 #  name           :string(255)
 #  description    :text
-#  date           :date
 #  time           :time
 #  logo           :string(255)
 #  owner          :string(255)
