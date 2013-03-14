@@ -2,7 +2,7 @@
 
 <div class="pull-left">
 
-<img src="#" height="300" width="200" alt="" style="margin:0 20px 20px 0">
+<%= image_tag(@hacker.photo, :height => "300", :width => "200", :alt => "photo of #{@hacker.fname} #{@hacker.lname}", :style => "margin:0 20px 20px 0") %>
 
 </div>
 
@@ -12,10 +12,11 @@
 
   <p>What I do: <%= @hacker.jobtitle %> at <%= @hacker.company %></p>
 
+  <p>Twitter: <%= @hacker.twitter_id %></p>
+
   <p>My Team: </p>
   <p>My Hacks: </p>
 
-  <p>Twitter: <%= @hacker.twitter_id %></p>
   
   <a href="<%= request.fullpath + "/edit" %>">Edit your profile</a>
 

@@ -3,13 +3,13 @@
 <% @hackers.each do |hacker| %>
 
     <% hacker_name =  hacker.fname + ' ' + hacker.lname %>
+    <% hacker_name_url = prep_string_for_url(hacker_name)  %>
+    <% hacker_show = hacker_path(:id => params['id'], :event_name => params['event_name'], :hacker_id => hacker.id, :hacker_name => hacker_name_url) %>
 
   <li class="span3">
      <div class="thumbnail">
-  <% photo = 'http://m.c.lnkd.licdn.com/mpr/mpr/shrink_200_200/p/4/000/1ae/20e/2e92e48.jpg' %>
-  <% eurl = request.fullpath + "/#{hacker.id}/" + prep_string_for_url("#{hacker_name}") + '/' %>
-     <%= link_to image_tag(photo, alt: "#{hacker_name} logo", height: 200, width: 300), eurl %>
-      <h3><%= link_to "#{hacker_name}", eurl %></h3>
+  <%= link_to image_tag(hacker.photo, alt: "#{hacker_name} logo", height: 200, width: 300), hacker_show  %>
+     <h3><%= link_to hacker_name, hacker_show %></h3>
         <p><%= hacker.jobtitle %></p>
         <p><%= hacker.city + ', ' + hacker.country%></p>
         <p>Team: $teamname</p>

@@ -26,30 +26,39 @@ Hacktools::Application.routes.draw do
  #
  # EVENTS
  # EVENTS INDEX IS HOMEPAGE
-  get 'events/:id/:event_name', to: 'events#show'
-
+  get 'events/:id/:event_name', to: 'events#show', as: :event
 
 # HACKS
 
-  get 'events/:id/:event_name/hacks', to: 'hacks#index'
+  get 'events/:id/:event_name/hacks', to: 'hacks#index', as: :hacks
 
-  get 'events/:id/:event_name/hacks/:hack_id/:hack_name', to: 'hacks#show'
+  get 'events/:id/:event_name/hacks/:hack_id/:hack_name', to: 'hacks#show', as: :hack
 
-  get 'events/:id/:event_name/hackers', to: 'hackers#index'
+  get 'events/:id/:event_name/hackers', to: 'hackers#index', as: :hackers
 
 # HACKERS
 
-  match 'events/:id/:event_name/hackers/:hacker_id/:hacker_name', to: 'hackers#show', as: :hacker
+  get 'events/:id/:event_name/hackers/:hacker_id/:hacker_name', to: 'hackers#show', as: :hacker
 
-  get 'events/:id/:event_name/hackers/:hacker_id/:hacker_name/edit', to: 'hackers#edit'
+  get 'events/:id/:event_name/hackers/:hacker_id/:hacker_name/edit', to: 'hackers#edit', as: :edit_hacker
 
-  put 'events/:id/:event_name/hackers/:hacker_id/:hacker_name/update', to: 'hackers#update'
+  get 'hackers/edit', to: 'hackers#edit', as: :edit_hacker_profile
+
+  put 'hackers/update', to: 'hackers#update', as: :update_hacker_profile
+
+  get 'hackers/show', to: 'hackers#show', as: :hacker_profile
+
+  put 'events/:id/:event_name/hackers/:hacker_id/:hacker_name/update', to: 'hackers#update', as: :update_hacker
+
+  get 'events/:id/:event_name/hackers/new', to: 'hackers#new', as: :new_hacker
+
+  post 'events/:id/:event_name/hackers/create', to: 'hackers#create', as: :create_hacker
 
 # TEAMS
 
-  get 'events/:id/:event_name/teams/', to: 'teams#index'
+  get 'events/:id/:event_name/teams/', to: 'teams#index', as: :teams
 
-  get 'events/:id/:event_name/teams/:team_id/:team_name', to: 'teams#show'
+  get 'events/:id/:event_name/teams/:team_id/:team_name', to: 'teams#show', as: :team
 
   # tag routes
 
@@ -61,7 +70,7 @@ Hacktools::Application.routes.draw do
 
   # static pages
   match '/about',   to: 'static_pages#about', :via => [:get], as: :about
-  match '/contact', to: 'static_pages#contact', :via => [:get] 
+  match '/contact', to: 'static_pages#contact', :via => [:get], as: :contact 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

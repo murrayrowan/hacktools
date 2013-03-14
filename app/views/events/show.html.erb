@@ -4,7 +4,8 @@
 
 <%= link_to image_tag(@event.logo, :size => "300x200", :alt => @event.name + " logo", :class => "img-polaroid", :style => "margin:0 20px 20px 0"), @event.url  %>
 <br>
-<a href="<%= @event.url %>" class="btn btn-primary btn-large clearfix">Register Here</a>
+
+<%= link_to "Sign me up!", '', :class => "btn btn-primary btn-large clearfix" %>
 
 <h3>Venue</h3>
   <address>
@@ -13,6 +14,8 @@
     <%= @event.city %>,<br>
     <%= @event.zipcode %>
   </address>
+
+<a href="<%= @event.url %>" class="btn btn-primary btn-info clearfix">Register Here</a>
 
 </div>
 

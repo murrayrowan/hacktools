@@ -6,14 +6,13 @@ class TeamsController < ApplicationController
   
    if params[:tag]
       
+    # this needs to be limited to teams in specific event
     @teams = Team.tagged_with(params[:tag])
 	    
    elsif params[:id]
 
-      # select * from teams where id in (select team_id from events_hackers_hacks_teams where event_id = params[:id]);
-      @hackers = Team.where(id: EventsHackersHacksTeams.select("team_id").where(event_id: params[:id]))
-		
-    @teams = Team.where(:event_id => params[:id])
+   # select * from teams where id in (select team_id from events_hackers_hacks_teams where event_id = 1); 
+    @teams = Team.where(id: EventsHackersHacksTeams.select("team_id").where(event_id: params[:id]))
 		      
    else
 			  

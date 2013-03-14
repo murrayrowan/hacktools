@@ -1,5 +1,6 @@
 class HackersController < ApplicationController
- 
+ before_filter :authenticate_user!, :except => [:show,:index]
+
   # GET /hackers
   # GET /hackers.json
   def index
@@ -29,8 +30,8 @@ class HackersController < ApplicationController
   # GET /hackers/1.json
   def show
 
-    @hacker = Hacker.find(params[:hacker_id])
-    @event = Event.find(params[:id])
+    @hacker = Hacker.find(params[:hacker_id]) if params[:hacker_id]
+    @event = Event.find(params[:id]) if params[:id]
   
     respond_to do |format|
       format.html # show.html.erb
@@ -38,24 +39,45 @@ class HackersController < ApplicationController
     end
   end
 
-  # GET /hackers/new
-  # GET /hackers/new.json
+  # GET
   def new
-    @hacker = Hacker.new
+    #before_filter :authenticate_user!
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @hacker }
+    @event = Event.find(params[:id])
+    @hacker = Hacker.where(user_id: current_user.id)
+
+      respond_to do |format|
+          format.html # new.html.erb
+          #format.json { render json: @hacker, status: :created, location: @hacker }
+      end
+    #@hacker = Hacker.new
+
+    #respond_to do |format|
+    #  format.html # new.html.erb
+    #  format.json { render json: @hacker }
+    #end
+  end
+
+  # GET
+  def edit
+    # tryint to make hackers independent of events
+    if params[:hacker_id]
+      @hacker = Hacker.find(params[:hacker_id])
+    elsif Hacker.exists?(:user_id => current_user.id)
+      @hacker = Hacker.where(:user_id => current_user.id).first
+    else
+      @hacker = Hacker.new(:user_id => params['user_id'])  
+        if @Hacker.save
+          redirect_to @Hacker
+        else
+          # This line overrides the default rendering behavior, which
+          # would have been to render the "create" view.
+          render "new"
+        end
     end
   end
 
-  # GET /hackers/1/edit
-  def edit
-    @hacker = Hacker.find(params[:hacker_id])
-  end
-
-  # POST /hackers
-  # POST /hackers.json
+  # POST
   def create
     @hacker = Hacker.new(params[:hacker])
 
@@ -72,7 +94,10 @@ class HackersController < ApplicationController
 
   # PUT 
   def update
-    @hacker = Hacker.find(params[:hacker_id])
+
+    #hacker_id = params[:hacker_id] ? params[:hacker_id] : params[:hacker][:id]
+    #@hacker = Hacker.find(hacker_id) 
+    @hacker = Hacker.find(params[:hacker_id]) 
 
     respond_to do |format|
       if @hacker.update_attributes(params[:hacker])
