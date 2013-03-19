@@ -2,14 +2,24 @@
 
 <div class="pull-left">
 
-<%= link_to image_tag(@hack.logo, :size => "300x200", :alt => @hack.name + " logo", :class => "img-polaroid", :style => "margin:0 20px 20px 0") %>
+<%= link_to image_tag(@hack.logo, :size => "300x200", :alt => @hack.name + " logo", :class => "img-polaroid", :style => "margin:0 20px 20px 0"), @hack.demo_url  %>
 
 </div>
 
-<h3><%= link_to @hack.name %></h3>
+<h3><%= link_to @hack.name, @hack.demo_url %></h3>
 
-  <p><%= @hack.description %></p>
+<p>By team <%= link_to @team.name, teams_path + "/#{@team.id}/" + prep_string_for_url(@team.name) %></p>
+
+<p><%= @hack.description %></p>
+
+<p><%= link_to "View the Source Code", @hack.source if @hack.source != nil %></p>
+
+<h4> Hackers on team <%= @team.name %>: </h4>
+
+<% @hackers.each do |hacker| %>
+
+<%= link_to "#{hacker.first_name} #{hacker.last_name}", hackers_path + "/#{hacker.id}/" + prep_string_for_url(hacker.first_name + hacker.last_name) + '/' %>
+
+<% end %>
 
 </div>
-
-<p id="notice"><%= notice %></p>

@@ -2,23 +2,30 @@
 
 <div class="pull-left">
 
-<%= image_tag(@hacker.photo, :height => "300", :width => "200", :alt => "photo of #{@hacker.fname} #{@hacker.lname}", :style => "margin:0 20px 20px 0") %>
+<%= image_tag(@hacker.photo, :height => "300", :width => "200", :alt => "photo of #{@hacker.first_name} #{@hacker.last_name}", :style => "margin:0 20px 20px 0") %>
 
 </div>
 
-<h2><%= @hacker.fname + ' ' + @hacker.lname %></h2>
+<h2><%= @hacker.first_name + ' ' + @hacker.last_name %></h2>
 
   <p>Where I'm from: <%= @hacker.city %>, <%= @hacker.country %></p>
 
-  <p>What I do: <%= @hacker.jobtitle %> at <%= @hacker.company %></p>
+  <p>What I do: <%= @hacker.job_title %> at <%= @hacker.company %></p>
 
   <p>Twitter: <%= @hacker.twitter_id %></p>
 
-  <p>My Team: </p>
-  <p>My Hacks: </p>
+  <p>My Team: <%= link_to @team.name, teams_path + "/#{@team.id}/" + prep_string_for_url(@team.name) + '/' %></p>
+  <p>My Hacks:
 
-  
-  <a href="<%= request.fullpath + "/edit" %>">Edit your profile</a>
+<% @hacks.each do |hack| %>
+  <%= link_to hack.name, hacks_path + "/#{hack.id}/" + prep_string_for_url(hack.name) + '/' %>,</p>
+<% end %>
+
+<% if current_user.id.to_s == params['hacker_id'] %>
+
+<%= link_to "Edit Your Profile", edit_user_registration_path %>
+
+<% end %>
 
 </div>
 

@@ -9,12 +9,14 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  photo       :string(255)
+#  event_id    :integer
 #
 
 class Team < ActiveRecord::Base
-  attr_accessible :id, :description, :logo, :name, :photo
-  has_many :hackers, :through => :events_hackers_hacks_teams
-  has_many :events_hackers_hacks_teams
+  attr_accessible :id, :description, :logo, :name, :photo, :event_id
+
+  has_many :users, :through => :affiliations
+  has_many :affiliations
   has_many :hacks
   belongs_to :event
 end

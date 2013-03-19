@@ -1,19 +1,26 @@
 class HackersController < ApplicationController
  before_filter :authenticate_user!, :except => [:show,:index]
 
+  # Using Hackers instead of Users, which maycause confusion
+
   # GET /hackers
   # GET /hackers.json
   def index
   @event = Event.find(params[:id])
 
-    if params[:tag]
+    if params[:tag] && params[:id]
 
-      @hackers = Hacker.tagged_with(params[:tag])
+      @hackers = User.tagged_with(params[:tag]).joins(:events).where(:attendances => {:event_id => params[:id]})
 
     elsif params[:id]
 
-    # select * from hackers where id in (select hacker_id from events_hackers_teams where event_id = params[:id]);
-      @hackers = Hacker.where(id: EventsHackersHacksTeams.select("hacker_id").where(event_id: params[:id]))
+      # join hackers and users and get hackers from the specified event
+      @hackers = User.joins(:events).where(:attendances => {:event_id => params[:id]})
+
+    elsif params[:tag] and not params[:id]
+
+      @hackers = User.tagged_with(params[:tag])
+
     else
 
       @hackers = Hacker.all
@@ -30,8 +37,11 @@ class HackersController < ApplicationController
   # GET /hackers/1.json
   def show
 
-    @hacker = Hacker.find(params[:hacker_id]) if params[:hacker_id]
+    @hacker = User.find(params[:hacker_id]) if params[:hacker_id]
     @event = Event.find(params[:id]) if params[:id]
+
+    @team = Team.joins(:users).where(:users => {:id => params['id']}).first
+    @hacks = Hack.where("team_id = ?", @team.id)
   
     respond_to do |format|
       format.html # show.html.erb
@@ -60,15 +70,15 @@ class HackersController < ApplicationController
 
   # GET
   def edit
-    # tryint to make hackers independent of events
+    # trying to make hackers independent of events
     if params[:hacker_id]
-      @hacker = Hacker.find(params[:hacker_id])
-    elsif Hacker.exists?(:user_id => current_user.id)
-      @hacker = Hacker.where(:user_id => current_user.id).first
+      @hacker = User.find(params[:hacker_id])
+    elsif User.exists?(:user_id => current_user.id)
+      @hacker = User.where(:user_id => current_user.id).first
     else
-      @hacker = Hacker.new(:user_id => params['user_id'])  
-        if @Hacker.save
-          redirect_to @Hacker
+      @hacker = User.new(:user_id => params['user_id'])  
+        if @User.save
+          redirect_to @User
         else
           # This line overrides the default rendering behavior, which
           # would have been to render the "create" view.
@@ -79,7 +89,7 @@ class HackersController < ApplicationController
 
   # POST
   def create
-    @hacker = Hacker.new(params[:hacker])
+    @hacker = User.new(params[:hacker])
 
     respond_to do |format|
       if @hacker.save

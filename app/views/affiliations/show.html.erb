@@ -1,0 +1,20 @@
+<% title "Affiliations" %>
+
+<p>
+  <strong>User:</strong>
+  <%= @affiliations.user_id %>
+</p>
+<p>
+  <strong>Team:</strong>
+  <%= @affiliations.team_id %>
+</p>
+<p>
+  <strong>Approved:</strong>
+  <%= @affiliations.approved %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_affiliations_path(@affiliations) %> |
+  <%= link_to "Destroy", @affiliations, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", affiliations_path %>
+</p>

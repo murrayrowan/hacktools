@@ -21,10 +21,9 @@ class Hacker < ActiveRecord::Base
   attr_accessible :id, :photo, :city, :company, :country, :dob, :fname, :jobtitle, :lname, :twitter_id, :tag_list, :user_id
 
 # many to many relationships through join tables
+  has_many :events, :through => :registrations 
+  has_many :teams
   has_many :events_hackers_hacks_teams
-  has_many :hacks, :through => :events_hackers_hacks_teams 
-  has_many :events, :through => :events_hackers_hacks_teams 
-  has_many :teams, :through => :events_hackers_hacks_teams 
 
 # validations
 validates_presence_of :fname, :message => "can't be blank"

@@ -4,19 +4,31 @@ class HacksController < ApplicationController
   def index
     @event = Event.find(params[:id])
     
-    if params[:tag]
+    # if tag and event id passed in
+    if params[:tag] && params[:id]
 
-      @hacks = Hack.tagged_with(params[:tag])
-
+      #get hacks from teams at the specified event which are tagged with tag  
+      @hacks = Hack.tagged_with(params[:tag]).where(team_id: Team.select("id").where(event_id: params[:id]))
+     
+    # if an event id, but no tag filter
     elsif params[:id]
+      #get the hacks from the teams at the event
+      #select * from hacks where team_id in(select id from teams where teams.event_id = 1);
+      # == 0.2ms
+      #@hacks = Hack.where(team_id: Team.select("id").where(event_id: params[:id])) 
 
-    # select * from hacks where id in (select hack_id from events_hackers_hacks_teams where event_id = params[:id]);
-    @hacks = Hack.where(id: EventsHackersHacksTeams.select("hack_id").where(event_id: params[:id]))
-  
-      #@hacks = Hack.where(:id => params[:id])
+      # could use a join == 0.1ms
+      @hacks = Hack.joins(:team).where(:teams => { :event_id => params[:id] })
+
+    # else if there's a tag, but no event id
+    elsif params[:tag] and not params[:id]
+
+      #get all hacks tagged with tag across all event
+      @hacks = Hack.tagged_with(params[:tag])
 
     else
 
+      #get all hacks if no params for event or tag are passed through
       @hacks = Hack.all
 
     end
@@ -32,6 +44,10 @@ class HacksController < ApplicationController
   def show
     @hack = Hack.find(params[:hack_id])
     @event = Event.find(params[:id])
+
+    @team = Team.joins(:hacks).where(:hacks => {:id => params[:hack_id] }).first
+
+    @hackers = User.joins(:teams).where(:affiliations => {:team_id => @team.id})
 
     respond_to do |format|
       format.html # show.html.erb

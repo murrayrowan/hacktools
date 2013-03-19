@@ -1,0 +1,11 @@
+New tables
+
+teams_users
+events_users
+*hacks_users* hacks connect to teams and teams connect to users
+
+Foriegn Keys
+hack needs event_id done
+hack needs team_id done
+
+team needs event_id done

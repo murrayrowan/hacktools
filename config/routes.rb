@@ -1,5 +1,9 @@
 Hacktools::Application.routes.draw do
 
+  resources :affiliations
+
+  resources :attendances
+
   match '/auth/:provider/callback' => 'authentications#create'
 
   resources :authentications
@@ -27,6 +31,8 @@ Hacktools::Application.routes.draw do
  # EVENTS
  # EVENTS INDEX IS HOMEPAGE
   get 'events/:id/:event_name', to: 'events#show', as: :event
+
+  get 'events/new', to: 'events#new', as: :new_event
 
 # HACKS
 

@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: affiliations
+#
+#  user_id    :integer
+#  team_id    :integer
+#  approved   :boolean
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  user_id: 1
+  team_id: 1
+  approved: false
+
+two:
+  user_id: 1
+  team_id: 1
+  approved: false

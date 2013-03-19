@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130312120652) do
+ActiveRecord::Schema.define(:version => 20130319170927) do
+
+  create_table "affiliations", :id => false, :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.boolean  "approved"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "attendances", :id => false, :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.boolean  "approved"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -40,30 +56,6 @@ ActiveRecord::Schema.define(:version => 20130312120652) do
     t.string   "country"
   end
 
-  create_table "events_hackers_hacks_teams", :id => false, :force => true do |t|
-    t.integer  "event_id"
-    t.integer  "hacker_id"
-    t.integer  "team_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "hack_id"
-  end
-
-  create_table "hackers", :force => true do |t|
-    t.string   "fname"
-    t.string   "lname"
-    t.string   "city"
-    t.string   "country"
-    t.string   "company"
-    t.string   "jobtitle"
-    t.string   "twitter_id"
-    t.date     "dob"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "photo"
-    t.integer  "user_id"
-  end
-
   create_table "hacks", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -72,6 +64,8 @@ ActiveRecord::Schema.define(:version => 20130312120652) do
     t.datetime "updated_at",  :null => false
     t.integer  "team_id"
     t.integer  "event_id"
+    t.string   "demo_url"
+    t.string   "source"
   end
 
   create_table "taggings", :force => true do |t|
@@ -98,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20130312120652) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "photo"
+    t.integer  "event_id"
   end
 
   create_table "users", :force => true do |t|
@@ -113,6 +108,14 @@ ActiveRecord::Schema.define(:version => 20130312120652) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "city"
+    t.string   "country"
+    t.string   "job_title"
+    t.string   "company"
+    t.string   "twitter_id"
+    t.string   "photo"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

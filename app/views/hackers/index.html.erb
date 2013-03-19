@@ -2,7 +2,7 @@
 
 <% @hackers.each do |hacker| %>
 
-    <% hacker_name =  hacker.fname + ' ' + hacker.lname %>
+    <% hacker_name =  hacker.first_name + ' ' + hacker.last_name %>
     <% hacker_name_url = prep_string_for_url(hacker_name)  %>
     <% hacker_show = hacker_path(:id => params['id'], :event_name => params['event_name'], :hacker_id => hacker.id, :hacker_name => hacker_name_url) %>
 
@@ -10,7 +10,7 @@
      <div class="thumbnail">
   <%= link_to image_tag(hacker.photo, alt: "#{hacker_name} logo", height: 200, width: 300), hacker_show  %>
      <h3><%= link_to hacker_name, hacker_show %></h3>
-        <p><%= hacker.jobtitle %></p>
+        <p><%= hacker.job_title %></p>
         <p><%= hacker.city + ', ' + hacker.country%></p>
         <p>Team: $teamname</p>
         <p>Hacks: $hacknames</p>  
@@ -27,7 +27,7 @@
 </ul>
 <h3>Hacker Tag Cloud</h3>
 <div id="tag_cloud">
-        <% tag_cloud Hacker.tag_counts, %w[s m l] do |tag, css_class| %>
+        <% tag_cloud User.tag_counts, %w[s m l] do |tag, css_class| %>
         <%= link_to tag.name, url_builder("/hackers/with/tag/#{tag.name}"), class: css_class %>
         <% end %>
 </div>

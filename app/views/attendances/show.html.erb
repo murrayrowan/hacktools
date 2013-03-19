@@ -1,0 +1,20 @@
+<% title "Attendances" %>
+
+<p>
+  <strong>User:</strong>
+  <%= @attendances.user_id %>
+</p>
+<p>
+  <strong>Event:</strong>
+  <%= @attendances.event_id %>
+</p>
+<p>
+  <strong>Approved:</strong>
+  <%= @attendances.approved %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_attendances_path(@attendances) %> |
+  <%= link_to "Destroy", @attendances, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", attendances_path %>
+</p>
