@@ -9,7 +9,7 @@
      <%= link_to image_tag(event.logo, alt: "#{event.name} logo", height: 200, width: 300), eurl %>
      </div>
       <h3><%= link_to "#{event.name}", eurl %></h3>
-	<p><%= l event.time, :format => :long %>.</p>
+	<p><%= l event.event_date, :format => :long %>.</p>
 	<p><%= event.venue %>, <%= event.street_address %>, <%= event.city %>.</p>
         <p><%= event.description %></p>
   <div>
@@ -30,7 +30,7 @@
      <%= link_to image_tag(event.logo, alt: "#{event.name} logo", height: 200, width: 300), eurl %>
      </div>
       <h3><%= link_to "#{event.name}", eurl %></h3>
-  <p><%= l event.time, :format => :long %>.</p>
+  <p><%= l event.event_date, :format => :long %>.</p>
   <p><%= event.venue %>, <%= event.street_address %>, <%= event.city %>.</p>
         <p><%= event.description %></p>
   <div>

@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
  
  def index
-      @events = Event.find(:all, :conditions => [ "time < ?", Time.now ] )
-      @past_events = Event.find(:all, :conditions => [ "time > ?", Time.now ] )
+      @events = Event.find(:all, :conditions => [ "event_date > ?", Date.today ] )
+      @past_events = Event.find(:all, :conditions => [ "event_date < ?", Date.today ] )
   
       respond_to do |format|
         format.html # index.html.erb
