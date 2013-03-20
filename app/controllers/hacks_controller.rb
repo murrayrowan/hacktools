@@ -12,12 +12,8 @@ class HacksController < ApplicationController
      
     # if an event id, but no tag filter
     elsif params[:id]
-      #get the hacks from the teams at the event
-      #select * from hacks where team_id in(select id from teams where teams.event_id = 1);
-      # == 0.2ms
-      #@hacks = Hack.where(team_id: Team.select("id").where(event_id: params[:id])) 
-
-      # could use a join == 0.1ms
+      # get the hacks from the teams at the event
+      # join == 0.1ms
       @hacks = Hack.joins(:team).where(:teams => { :event_id => params[:id] })
 
     # else if there's a tag, but no event id

@@ -34,6 +34,12 @@ Hacktools::Application.routes.draw do
 
   get 'events/new', to: 'events#new', as: :new_event
 
+  post 'events/', to: 'events#create', as: :create_event
+
+  get 'events/:id/:event_name/edit', to: 'events#edit', as: :edit_event
+
+  put 'events/:id/:event_name', to: 'events#update', as: :update_event
+
 # HACKS
 
   get 'events/:id/:event_name/hacks', to: 'hacks#index', as: :hacks
@@ -46,7 +52,8 @@ Hacktools::Application.routes.draw do
 
   get 'events/:id/:event_name/hackers/:hacker_id/:hacker_name', to: 'hackers#show', as: :hacker
 
-  get 'events/:id/:event_name/hackers/:hacker_id/:hacker_name/edit', to: 'hackers#edit', as: :edit_hacker
+  #this was deprecated by /users/edit
+  #get 'events/:id/:event_name/hackers/:hacker_id/:hacker_name/edit', to: 'hackers#edit', as: :edit_hacker
 
   get 'hackers/edit', to: 'hackers#edit', as: :edit_hacker_profile
 

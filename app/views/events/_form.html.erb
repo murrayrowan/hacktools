@@ -1,5 +1,5 @@
 
-<%= simple_form_for(@event, :url => new_event_path + '/new', :method => :post, :html => {:class => 'form-horizontal' }) do |f| %>
+<%= simple_form_for(@event, :url => path, :method => method, :html => {:class => 'form-horizontal' }) do |f| %>
 <%= f.error_notification %>
   <%= f.input :name, label: "Event Name", required: true %>
   <%= f.input :description, label: "Description" %>
@@ -17,5 +17,5 @@
   <%= f.input :facebook_id %>
   <%= f.input :url %>
   <%= f.error :base %>
-  <%= f.button :submit, "Submit Event" %>
+  <%= f.button :submit, btn_txt %>
 <% end %>
