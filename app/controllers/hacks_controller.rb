@@ -15,6 +15,7 @@ class HacksController < ApplicationController
       # get the hacks from the teams at the event
       # join == 0.1ms
       @hacks = Hack.joins(:team).where(:teams => { :event_id => params[:id] })
+      @attendances = Attendance.where("user_id = ?", current_user.id)
 
     # else if there's a tag, but no event id
     elsif params[:tag] and not params[:id]

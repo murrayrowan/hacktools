@@ -16,7 +16,8 @@ class HackersController < ApplicationController
 
       # join hackers and users and get hackers from the specified event
       @hackers = User.joins(:events).where(:attendances => {:event_id => params[:id]})
-
+      @attendances = Attendance.where("user_id = ?", current_user.id)
+    
     elsif params[:tag] and not params[:id]
 
       @hackers = User.tagged_with(params[:tag])

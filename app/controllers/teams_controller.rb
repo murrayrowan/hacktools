@@ -13,6 +13,7 @@ class TeamsController < ApplicationController
    elsif params[:id]
 
    @teams = Team.joins(:users).where(:teams => { :event_id => params[:id] })
+   @attendances = Attendance.where("user_id = ?", current_user.id)
 
    # select * from teams where id in (select team_id from events_hackers_hacks_teams where event_id = 1); 
    # @teams = Team.where(id: EventsHackersHacksTeams.select("team_id").where(event_id: params[:id]))
