@@ -4,7 +4,9 @@
   <%= f.input :name, label: "Event Name", required: true %>
   <%= f.input :description, label: "Description" %>
   <%= f.input :tag_list, hint: 'comma separated.' %>
-  <%= f.input :event_date, as: :datetime %>
+    <% #= f.input :event_date, :as => :string %>
+  <%= f.input :event_date, :as => :date, :ignore_time => true %>
+  <%= f.input :event_date, :as => :time, label: "Start time", :ignore_date => true %>
   <%= f.input :logo, hint: 'url' %>
   <%= f.input :twitter_id %>
   <%= f.input :owner, input_html: { value: current_user.email } %>

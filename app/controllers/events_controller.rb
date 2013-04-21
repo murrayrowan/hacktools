@@ -10,6 +10,11 @@ class EventsController < ApplicationController
   def show
 
     @event = Event.find(params[:id])
+    @attendances = Attendance.where("user_id = ?", current_user.id)
+
+    #get hacks for default hackers list under the event details
+    # join hackers and users and get hackers from the specified event
+    @hackers = User.joins(:events).where(:attendances => {:event_id => params[:id]})
 
     respond_to do |format|
       format.html # show.html.erb
@@ -42,7 +47,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to '/', notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
       else
         format.html { render action: "new" }

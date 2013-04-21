@@ -1,0 +1,24 @@
+<ul class="thumbnails">
+
+<% @hacks.each do |hack| %>
+
+  <li class="span3">
+     <div class="thumbnail">
+     <% hurl = url_builder("/hacks/#{hack.id}/" + prep_string_for_url(hack.name) + '/') %>
+     <%= link_to image_tag(hack.logo, alt: "#{hack.name} logo", height: 200, width: 300), hurl %>
+      <h3><%= link_to "#{hack.name}", hurl %></h3>
+      <p><%= hack.description %></p>
+      <p><%= raw hack.tag_list.map { |t| link_to t, url_builder( "/hacks/with/tag/#{t}/") }.join(', ') %></p>     </div>
+  </li>
+
+<% end %>
+
+</ul>
+
+<h3>Filter Hacks by Tag</h3>
+
+<div id="tag_cloud">
+        <% tag_cloud Hack.tag_counts, %w[s m l] do |tag, css_class| %>
+        <%= link_to tag.name, url_builder("/hacks/with/tag/#{tag.name}"), class: css_class %>
+        <% end %>
+</div>

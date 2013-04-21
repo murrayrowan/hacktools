@@ -1,10 +1,10 @@
 class AttendancesController < ApplicationController
   def index
-    @attendances = Attendances.all
+    @events = Event.joins(:attendances).where('user_id = ?', params[:user_id])
   end
 
   def show
-    @attendances = Attendances.find(params[:id])
+    @attendances = Attendance.find(params[:user_id])
   end
 
   def new

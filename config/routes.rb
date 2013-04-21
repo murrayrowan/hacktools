@@ -2,7 +2,7 @@ Hacktools::Application.routes.draw do
 
   resources :affiliations
 
-  resources :attendances
+  get '/users/:user_id/:user_name/events', to: 'attendances#index', as: :user_attendances
 
   match '/auth/:provider/callback' => 'authentications#create'
 
@@ -30,11 +30,12 @@ Hacktools::Application.routes.draw do
  #
  # EVENTS
  # EVENTS INDEX IS HOMEPAGE
+
   get 'events/:id/:event_name', to: 'events#show', as: :event
 
   get 'events/new', to: 'events#new', as: :new_event
 
-  post 'events/', to: 'events#create', as: :create_event
+  match 'events/create', to: 'events#create', as: :create_event
 
   get 'events/:id/:event_name/edit', to: 'events#edit', as: :edit_event
 
@@ -46,9 +47,10 @@ Hacktools::Application.routes.draw do
 
   get 'events/:id/:event_name/hacks/:hack_id/:hack_name', to: 'hacks#show', as: :hack
 
-  get 'events/:id/:event_name/hackers', to: 'hackers#index', as: :hackers
 
 # HACKERS
+
+  get 'events/:id/:event_name/hackers', to: 'hackers#index', as: :hackers
 
   get 'events/:id/:event_name/hackers/:hacker_id/:hacker_name', to: 'hackers#show', as: :hacker
 

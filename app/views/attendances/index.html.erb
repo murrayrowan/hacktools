@@ -1,21 +1,21 @@
-<% title "Attendances" %>
+<h2>My Events</h2>
 
 <table>
   <tr>
-    <th>User</th>
     <th>Event</th>
-    <th>Approved</th>
+    <th>city</th>
   </tr>
-  <% for attendances in @attendances %>
+  <% for event in @events %>
     <tr>
-      <td><%= attendances.user_id %></td>
-      <td><%= attendances.event_id %></td>
-      <td><%= attendances.approved %></td>
-      <td><%= link_to "Show", attendances %></td>
-      <td><%= link_to "Edit", edit_attendances_path(attendances) %></td>
-      <td><%= link_to "Destroy", attendances, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= event.name %></td>
+      <td><%= event.city %></td>
+      <td>  <div>
+    <a href="<%= event.url %>" class="btn btn-primary btn-small clearfix">Unregister</a></div></td>
+      <td><%#= link_to "Show", attendances %></td>
+      <td><%#= link_to "Edit", edit_attendances_path(attendances) %></td>
+      <td><%#= link_to "Destroy", attendances, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to "New Attendances", new_attendances_path %></p>
+<p><%#= link_to "New Attendances", new_attendances_path %></p>

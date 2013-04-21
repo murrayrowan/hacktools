@@ -1,0 +1,65 @@
+<div class="hero-unit clearfix">
+
+<div class="pull-left">
+
+<%= link_to image_tag(@event.logo, :size => "300x200", :alt => @event.name + " logo", :class => "img-polaroid", :style => "margin:0 20px 20px 0"), @event.url  %>
+<br>
+
+<% if registered(@attendances, params[:id]) %>
+
+  <%= link_to "Unregister " + current_user.first_name, '', :class => "btn btn-primary btn-large clearfix" %>
+
+<% else %>
+
+  <%= link_to "Register", '', :class => "btn btn-primary btn-large clearfix" %>
+
+<% end %><br><br>
+
+<%= link_to "Edit Event Details", edit_event_path %>
+
+</div>
+
+<h2><%= @event.name %></h2>
+
+<p><strong><%= l @event.event_date, :format => :long %></strong></p>
+
+<p><%= @event.description %></p>
+
+  <p><strong>Location:</strong> <%= @event.venue %>, <%= @event.street_address %>, <%= @event.city %>, <%= @event.zipcode %></p>
+  <p><strong>Event URL:</strong> <%= link_to @event.url, @event.url %></p>
+  <p><strong>Twitter:</strong> <%= @event.twitter_id %></p>
+  <p><strong>Facebook:</strong> <%= @event.facebook_id %></p>
+
+</div>
+
+<% liclass = 'class="active"'
+   tab ||= 'hackers' %>
+<ul class="nav nav-tabs" id="tabs">
+  <li <%=raw liclass if tab == 'hackers' %>>
+    <%=raw link_to 'Hackers', event_path + '/hackers/' %> 
+  </li>
+  <li <%=raw liclass if tab == 'teams' %>>
+    <%= link_to 'Teams', event_path + '/teams/' %>
+  </li>
+  <li <%=raw liclass if tab == 'hacks' %>>
+    <%= link_to 'Hacks', event_path + '/hacks/' %>
+  </li>
+</ul>
+
+<% if tab == 'hackers' %>
+
+  <%= render 'layouts/hackers' %>
+
+<% elsif tab == 'teams' %>
+
+  <%= render 'layouts/teams' %>
+
+<% elsif tab == 'hacks' %>
+
+  <%= render 'layouts/hacks' %>
+
+<% end %>
+
+
+
+

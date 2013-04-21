@@ -38,11 +38,22 @@ class HackersController < ApplicationController
   def show
 
     @hacker = User.find(params[:hacker_id]) if params[:hacker_id]
-    @event = Event.find(params[:id]) if params[:id]
 
-    @team = Team.joins(:users).where(:users => {:id => params['id']}).first
-    @hacks = Hack.where("team_id = ?", @team.id)
-  
+    if params['id']
+      # show in context of specific event
+      @event = Event.find(params[:id]) if params[:id]
+      @team = Team.joins(:users).where(:users => {:id => params['id']}).first
+      @hacks = Hack.where("team_id = ?", @team.id)
+    else
+      # show all events if no event specified
+      @attendances = Attendance.where("user_id = ?", params[:hacker_id])
+      # select * from hacks inner join teams on hacks.team_id = teams.id 
+      # inner join affiliations on teams.id = affiliations.team_id 
+      # inner join users on users.id = affiliations.user_id 
+      # where users.id = 3;
+      @hacks = Hack.joins(:team => :users).where('users.id = ?', params[:hacker_id])   
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @hacker }

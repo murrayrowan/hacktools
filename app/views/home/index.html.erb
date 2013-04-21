@@ -1,5 +1,8 @@
 <h2>Upcoming Hack Events</h2>
 
+
+
+
 <ul class="thumbnails">
 <% @events.each do |event| %>
   <li class="span4">
@@ -13,7 +16,12 @@
 	<p><%= event.venue %>, <%= event.street_address %>, <%= event.city %>.</p>
         <p><%= event.description %></p>
   <div>
-    <a href="<%= event.url %>" class="btn btn-primary btn-small clearfix">Register Here</a></div>
+
+    <% if registered(@attendances, event.id) %>
+      <a href="<%= event.url %>" class="btn btn-primary btn-medium clearfix">Unregister <%= current_user.first_name %></a></div>
+    <% else %>
+      <a href="<%= event.url %>" class="btn btn-primary btn-medium clearfix">Register</a></div>
+    <% end %>
   </div>
   </li>
 <% end %>
@@ -34,7 +42,7 @@
   <p><%= event.venue %>, <%= event.street_address %>, <%= event.city %>.</p>
         <p><%= event.description %></p>
   <div>
-    <a href="/events/<%= event.id %>/<%= prep_string_for_url(event.name) %>/hacks/" class="btn btn-primary btn-small clearfix">Browse the Hacks</a></div>
+    <a href="/events/<%= event.id %>/<%= prep_string_for_url(event.name) %>/hacks/" class="btn btn-primary btn-medium clearfix">Hacks</a></div>
   </div>
   </li>
 <% end %>

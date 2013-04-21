@@ -22,7 +22,7 @@
 #
 
 class Event < ActiveRecord::Base
-  attr_accessible :city, :description, :email, :facebook_id, :logo, :name, :owner, :street_address, :time, :twitter_id, :url, :venue, :zipcode, :country, :tag_list
+  attr_accessible :city, :description, :email, :facebook_id, :logo, :name, :owner, :street_address, :time, :twitter_id, :url, :venue, :zipcode, :country, :tag_list, :event_date
     has_many :users, :through => :attendances
     has_many :attendances
     has_many :teams

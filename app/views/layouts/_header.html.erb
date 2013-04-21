@@ -4,20 +4,15 @@
        <h1 id="logo"><a href="/">Hack Tools</a></h1>
        <nav>
          <ul class="nav pull-right">
-            <% if defined?(@event.id) && @event.name != nil %>
-              <li><a href="/events/<%= @event.id %>/<%= prep_string_for_url(@event.name) %>/hacks/">Hacks</a></li>
-              <li><a href="/events/<%= @event.id %>/<%= prep_string_for_url(@event.name) %>/hackers/">Hackers</a></li>
-              <li><a href="/events/<%= @event.id %>/<%= prep_string_for_url(@event.name) %>/teams/">Teams</a></li>
-            <% else %>
-              <li><%= link_to "Add Event", new_event_path %>
-            <% end %>
+         <% unless defined?(@event.id) %>
+              <li><%= link_to "Add event", new_event_path %>
+         <% end %>
 	      <% if user_signed_in? %>
 	        <li><%= link_to current_user.email, edit_user_registration_path %></li>
 		      <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
 	      <% else %>
           <li><%= link_to "Sign Up", new_user_registration_path %></li><li><%= link_to "Sign in", authentications_path %></li>
 	      <% end %>
-          <li><%= link_to "About",  '/about/' %></li>
          </ul>
        </nav>
       </div>

@@ -10,6 +10,7 @@ gem 'omniauth-twitter'
 gem "authbuttons-rails"
 gem 'simple_form'
 gem "country-select"
+gem 'jquery-ui-rails'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
