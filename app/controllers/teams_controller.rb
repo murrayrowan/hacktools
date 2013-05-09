@@ -12,7 +12,7 @@ class TeamsController < ApplicationController
 	    
    elsif params[:id]
 
-   @teams = Team.joins(:users).where(:teams => { :event_id => params[:id] })
+   @teams = Team.where(:event_id => params[:id])
    @attendances = Attendance.where("user_id = ?", current_user.id)
 
    # select * from teams where id in (select team_id from events_hackers_hacks_teams where event_id = 1); 
@@ -64,13 +64,17 @@ class TeamsController < ApplicationController
   # POST /teams.json
   def create
     @team = Team.new(params[:team])
-
+   
     respond_to do |format|
       if @team.save
-        format.html { redirect_to event_path + '/teams', notice: 'Team was successfully created.' }
+        # save the affiliation of team creator to team
+        @affiliation = Affiliation.new(:user_id => current_user.id, :team_id => @team.id, :approved => true)
+        @affiliation.save
+
+        format.html { redirect_to event_path + '/teams', notice: 'Your team was successfully created.' }
         format.json { render json: @team, status: :created, location: @team }
       else
-        format.html { render action: "new" }
+        format.html { render action: "new", alert: 'Something went wrong creating your team.'  }
         format.json { render json: @team.errors, status: :unprocessable_entity }
       end
     end
