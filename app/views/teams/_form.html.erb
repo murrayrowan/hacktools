@@ -1,33 +1,10 @@
-<%= form_for(@team) do |f| %>
-  <% if @team.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
 
-      <ul>
-      <% @team.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :logo %><br />
-    <%= f.text_field :logo %>
-  </div>
-    <div class="field">
-        <%= f.label :event_id %><br />
-        <%= f.text_field :event_id %>
-    </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for(@team, :url => path, :method => method, :html => {:class => 'form-horizontal' }) do |f| %>
+<%= f.error_notification %>
+  <%= f.input :name, label: "Team Name", required: true %>
+  <%= f.input :description, label: "Description" %>
+  <%= f.input :logo, label: "Logo" %>
+  <%= f.hidden_field :event_id, value: params['id'] %>
+  <%= f.error :base %>
+  <%= f.button :submit, btn_txt %>
 <% end %>

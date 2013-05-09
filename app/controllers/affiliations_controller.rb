@@ -34,8 +34,8 @@ class AffiliationsController < ApplicationController
   end
 
   def destroy
-    @affiliations = Affiliations.find(params[:id])
+    @affiliations = Affiliation.find(params[:id])
     @affiliations.destroy
-    redirect_to affiliations_url, :notice => "Successfully destroyed affiliations."
+    redirect_to '/', :notice => "You have been successfully unregistered from team."
   end
 end

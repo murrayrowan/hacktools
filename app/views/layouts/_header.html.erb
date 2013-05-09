@@ -4,15 +4,15 @@
        <h1 id="logo"><a href="/">Hack Tools</a></h1>
        <nav>
          <ul class="nav pull-right">
-         <% unless defined?(@event.id) %>
-              <li><%= link_to "Add event", new_event_path %>
-         <% end %>
 	      <% if user_signed_in? %>
 	        <li><%= link_to current_user.email, edit_user_registration_path %></li>
 		      <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
 	      <% else %>
           <li><%= link_to "Sign Up", new_user_registration_path %></li><li><%= link_to "Sign in", authentications_path %></li>
 	      <% end %>
+        <% unless defined?(@event.id) %>
+          <li><%= link_to "New event", new_event_path %>
+        <% end %>
          </ul>
        </nav>
       </div>

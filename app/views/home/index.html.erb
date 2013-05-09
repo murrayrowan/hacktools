@@ -5,26 +5,29 @@
   <li class="span4">
      <div class="thumbnail">
      <div class="span4">
-     <% eurl = "/events/#{event.id}/" + prep_string_for_url(event.name) + '/hackers/' %>
-     <%= link_to image_tag(event.logo, alt: "#{event.name} logo", height: 200, width: 300), eurl %>
+       <% eurl = "/events/#{event.id}/" + prep_string_for_url(event.name) + '/hackers/' %>
+       <%= link_to image_tag(event.logo, alt: "#{event.name} logo", height: 200, width: 300), eurl %>
      </div>
       <h3><%= link_to "#{event.name}", eurl %></h3>
 	<p><%= l event.event_date, :format => :long %>.</p>
 	<p><%= event.venue %>, <%= event.street_address %>, <%= event.city %>.</p>
-        <p><%= event.description %></p>
+  <p><%= event.description %></p>
   <div>
-
-    <% if registered(@attendances, event.id) %>
-      <a href="<%= event.url %>" class="btn btn-primary btn-medium clearfix">Unregister <%= current_user.first_name %></a></div>
+    <% if defined?(@attendances) && (attendance_id = registered(@attendances, event.id)) %>
+      <%= link_to "Unregister", "/attendances/#{attendance_id}", :method => :delete, :class => "btn btn-primary btn-medium clearfix" %>
+    <% elsif defined?(@attendances) %>
+      <%= button_to "Register", { :controller => 'attendances',
+  :user_id => current_user.id, :event_id => event.id}, :method => :post, :class => "btn btn-primary btn-medium clearfix" %>
     <% else %>
-      <a href="<%= event.url %>" class="btn btn-primary btn-medium clearfix">Register</a></div>
+      <%= link_to "Sign In to Register", "/authentications", :class => "btn btn-primary btn-medium clearfix" %>
     <% end %>
+    </div>
   </div>
   </li>
 <% end %>
 </ul>
-
-<h2 style="clear:left">Past Hack Events</h2>
+  
+<h2>Past Hack Events</h2>
 
 <ul class="thumbnails">
 <% @past_events.each do |event| %>
@@ -38,8 +41,6 @@
   <p><%= l event.event_date, :format => :long %>.</p>
   <p><%= event.venue %>, <%= event.street_address %>, <%= event.city %>.</p>
         <p><%= event.description %></p>
-  <div>
-    <a href="/events/<%= event.id %>/<%= prep_string_for_url(event.name) %>/hacks/" class="btn btn-primary btn-medium clearfix">Hacks</a></div>
   </div>
   </li>
 <% end %>

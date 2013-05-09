@@ -12,9 +12,9 @@ class AttendancesController < ApplicationController
   end
 
   def create
-    @attendances = Attendances.new(params[:attendances])
+    @attendances = Attendance.new(:user_id => params[:user_id], :event_id => params[:event_id])
     if @attendances.save
-      redirect_to @attendances, :notice => "Successfully created attendances."
+      redirect_to :back, :notice => "You have been successfully REGISTERED for this event."
     else
       render :action => 'new'
     end
@@ -34,8 +34,10 @@ class AttendancesController < ApplicationController
   end
 
   def destroy
-    @attendances = Attendances.find(params[:id])
+    @attendances = Attendance.find(params[:id])
     @attendances.destroy
-    redirect_to attendances_url, :notice => "Successfully destroyed attendances."
+    redirect_to :back, :notice => "You have been successfully UNREGISTERED from this event."
+    rescue ActionController::RedirectBackError
+      redirect_to root_path, :notice => "You have been successfully UNREGISTERED from the event."
   end
 end

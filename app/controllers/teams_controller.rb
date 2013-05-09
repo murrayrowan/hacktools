@@ -35,7 +35,9 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:team_id])
     @event = Event.find(params[:id])
-    
+    @hacks = Hack.joins(:team).where(:teams => { :id => params[:team_id] })
+    @hackers = User.joins(:teams).where(:affiliations => {:team_id => params[:team_id]})
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @team }
@@ -65,7 +67,7 @@ class TeamsController < ApplicationController
 
     respond_to do |format|
       if @team.save
-        format.html { redirect_to @team, notice: 'Team was successfully created.' }
+        format.html { redirect_to event_path + '/teams', notice: 'Team was successfully created.' }
         format.json { render json: @team, status: :created, location: @team }
       else
         format.html { render action: "new" }

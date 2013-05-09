@@ -62,9 +62,9 @@ module ApplicationHelper
   
   # used for register/unregister for event buttons 
   def registered(user_attendances, current_event_id)
-    user_attendances.each do |event|
+    user_attendances.each do |attendance|
       # user is attending this event 
-      return TRUE if event.event_id == current_event_id.to_i
+      return attendance.id if attendance.event_id == current_event_id.to_i
     end
       # user is not attending this event
       return FALSE

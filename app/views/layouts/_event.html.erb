@@ -5,14 +5,16 @@
 <%= link_to image_tag(@event.logo, :size => "300x200", :alt => @event.name + " logo", :class => "img-polaroid", :style => "margin:0 20px 20px 0"), @event.url  %>
 <br>
 
-<% if registered(@attendances, params[:id]) %>
+<% if defined?(@attendances) && (attendance_id = registered(@attendances, params[:id])) %>
 
-  <%= link_to "Unregister " + current_user.first_name, '', :class => "btn btn-primary btn-large clearfix" %>
+<%= link_to "Unregister", "/attendances/#{attendance_id}", :method => :delete, :class => "btn btn-primary btn-medium clearfix" %>
+
+<% elsif defined?(@attendances) %>
+      <%= button_to "Register", { :controller => 'attendances',
+  :user_id => current_user.id, :event_id => params[:id] }, :method => :post, :class => "btn btn-primary btn-medium clearfix" %>
 
 <% else %>
-
-  <%= link_to "Register", '', :class => "btn btn-primary btn-large clearfix" %>
-
+      <%= link_to "Sign In to Register", "/authentications", :class => "btn btn-primary btn-medium clearfix" %>
 <% end %><br><br>
 
 <%= link_to "Edit Event Details", edit_event_path %>
@@ -32,18 +34,23 @@
 
 </div>
 
-<% liclass = 'class="active"'
-   tab ||= 'hackers' %>
+<div style="float:right;">
+  <%= link_to "Submit a Hack", new_hack_path, :class => "btn btn-primary btn-small" %>
+  <%= link_to "Create a Team", new_team_path, :class => "btn btn-primary btn-small" %>
+</div>
+
 <ul class="nav nav-tabs" id="tabs">
-  <li <%=raw liclass if tab == 'hackers' %>>
-    <%=raw link_to 'Hackers', event_path + '/hackers/' %> 
-  </li>
-  <li <%=raw liclass if tab == 'teams' %>>
-    <%= link_to 'Teams', event_path + '/teams/' %>
-  </li>
-  <li <%=raw liclass if tab == 'hacks' %>>
-    <%= link_to 'Hacks', event_path + '/hacks/' %>
-  </li>
+<% tabs = ['hackers','teams','hacks'] 
+   tabs.each do |tab|
+       if request.fullpath =~ /#{tab}/i 
+         active = 'class="active"'
+         tag = " (tagged with " + params[:tag] + ')' if params[:tag]
+       end  
+       %>
+      <li <%=raw active if active != nil %>>
+        <%=raw link_to tab.capitalize + tag.to_s, event_path + "/#{tab}/" %> 
+      </li>
+<% end %> 
 </ul>
 
 <% if tab == 'hackers' %>

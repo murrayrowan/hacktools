@@ -13,7 +13,7 @@
 #
 
 class Hack < ActiveRecord::Base
-  attr_accessible :id, :description, :logo, :name, :team_id, :event_id, :tag_list
+  attr_accessible :id, :description, :logo, :name, :team_id, :event_id, :tag_list, :demo_url, :source
 
 # one to many relationships
   belongs_to :team

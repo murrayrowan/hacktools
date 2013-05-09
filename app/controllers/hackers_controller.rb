@@ -11,11 +11,16 @@ class HackersController < ApplicationController
     if params[:tag] && params[:id]
 
       @hackers = User.tagged_with(params[:tag]).joins(:events).where(:attendances => {:event_id => params[:id]})
-
+      
+      # used only for the register / unregister button
+      @attendances = Attendance.where("user_id = ?", current_user.id)
+    
     elsif params[:id]
 
       # join hackers and users and get hackers from the specified event
       @hackers = User.joins(:events).where(:attendances => {:event_id => params[:id]})
+      
+      # used only for the register / unregister button
       @attendances = Attendance.where("user_id = ?", current_user.id)
     
     elsif params[:tag] and not params[:id]

@@ -10,6 +10,34 @@
 
 <p><%= @team.description %></p>
 
-<p>Hacks: </p>
+<%= link_to "Join team", '', :class => "btn btn-primary btn-large" %>
 
 </div>
+
+<ul class="nav nav-tabs" id="tabs">
+<% tab_value = params['tab_value'] != nil ? params['tab_value'] : 'hackers'
+   tabs = ['hackers','hacks'] 
+   tabs.each do |tab|
+       if tab_value == tab
+         active = 'class="active"'
+       end  
+       %>
+      <li <%=raw active if active != nil %>>
+            <%=raw link_to tab, team_path + "/#{tab}" %> 
+      </li>
+<% end %> 
+</ul>
+
+<%  if tab_value == 'hackers' %>
+
+<%= render 'layouts/hackers', :omit_tags => true %>
+
+<% elsif tab_value == 'hacks' %>
+
+<%= render 'layouts/hacks', :omit_tags => true %>
+
+<% end %>
+
+
+
+

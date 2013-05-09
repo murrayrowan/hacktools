@@ -1,12 +1,9 @@
 Hacktools::Application.routes.draw do
 
   resources :affiliations
-
-  get '/users/:user_id/:user_name/events', to: 'attendances#index', as: :user_attendances
-
-  match '/auth/:provider/callback' => 'authentications#create'
-
+  resources :attendances
   resources :authentications
+  match '/auth/:provider/callback' => 'authentications#create'
 
   devise_for :users, :controllers => {:registrations => 'registrations'}
 
@@ -16,22 +13,13 @@ Hacktools::Application.routes.draw do
   # redirect /events to /, so that we don't have duplication with homepage
   match '/events', :to => redirect("/")
 
-  # routes to show hackers and hacks within the event context, 
-  # rather than globally, which is currently disabled
+  get '/users/:user_id/:user_name/events', to: 'attendances#index', as: :user_attendances
 
- # This format wouldn't allow me to add :eventname, :teamname, :hackername to the urls 
- # resources :events do
- #   resources :hacks
- #   resources :hackers
- #   resources :teams
- # end
-
- # using longwinded format for reason specified above
- #
  # EVENTS
  # EVENTS INDEX IS HOMEPAGE
 
-  get 'events/:id/:event_name', to: 'events#show', as: :event
+  #get 'events/:id/:event_name', to: 'events#show', as: :event
+  match "events/:id/:event_name" => redirect("/events/%{id}/%{event_name}/hackers"), as: :event
 
   get 'events/new', to: 'events#new', as: :new_event
 
@@ -47,6 +35,9 @@ Hacktools::Application.routes.draw do
 
   get 'events/:id/:event_name/hacks/:hack_id/:hack_name', to: 'hacks#show', as: :hack
 
+  get 'events/:id/:event_name/new_hack', to: 'hacks#new', as: :new_hack
+
+  post 'events/:id/:event_name/hack/create', to: 'hacks#create', as: :create_hack
 
 # HACKERS
 
@@ -74,6 +65,12 @@ Hacktools::Application.routes.draw do
   get 'events/:id/:event_name/teams/', to: 'teams#index', as: :teams
 
   get 'events/:id/:event_name/teams/:team_id/:team_name', to: 'teams#show', as: :team
+
+  get 'events/:id/:event_name/teams/:team_id/:team_name/:tab_value', to: 'teams#show', as: :team_tabset
+
+  get 'events/:id/:event_name/new_team', to: 'teams#new', as: :new_team
+
+  post 'events/:id/:event_name/team/create', to: 'teams#create', as: :create_team
 
   # tag routes
 

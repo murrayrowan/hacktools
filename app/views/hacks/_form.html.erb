@@ -1,39 +1,13 @@
-<%= form_for(@hack) do |f| %>
-  <% if @hack.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@hack.errors.count, "error") %> prohibited this hack from being saved:</h2>
-      <ul>
-      <% @hack.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-      <%= f.label :tag_list, "Tags (separated by commas)" %><br />
-      <%= f.text_field :tag_list %>
-  </div>
-
-  <div class="field">
-    <%= f.label :logo %><br />
-    <%= f.text_field :logo %>
-  </div>
-
- <div class="field">
-     <%= f.label :event_id %><br />
-     <%= f.text_field :event_id %>
- </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for(@hack, :url => path, :method => method, :html => {:class => 'form-horizontal' }) do |f| %>
+<%= f.error_notification %>
+  <%= f.input :name, label: "Hack Name", required: true %>
+  <%= f.association :team, :collection => Team.joins(:affiliations).where(:affiliations => {:user_id => current_user.id}).where(:teams => {:event_id => params['id']}), :label_method => :name, :value_method => :id, label: "Team", hint: 'You must create a team before you can submit a hack.', required: true %>
+  <%= f.input :description, label: "Description" %>
+  <%= f.input :logo, label: "Logo" %>
+  <%= f.input :demo_url, label: "Demo URL" %>
+  <%= f.input :source, label: "Source Code URL" %>
+  <%= f.input :tag_list, hint: 'comma separated.' %>
+  <%= f.hidden_field :event_id, value: params['id'] %>
+  <%= f.error :base %>
+  <%= f.button :submit, btn_txt %>
 <% end %>

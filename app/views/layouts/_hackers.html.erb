@@ -12,9 +12,6 @@
      <h3><%= link_to hacker_name, hacker_show %></h3>
         <p><%= hacker.job_title %></p>
         <p><%= hacker.city + ', ' + hacker.country%></p>
-        <p>Team: $teamname</p>
-        <p>Hacks: $hacknames</p>  
-
         <p>My tags: <%= raw hacker.tag_list.map { |t| link_to t, url_builder( "/hackers/with/tag/#{t}/") }.join(', ') %></p>
 
         <p><a href="https://twitter.com/<%= hacker.twitter_id %>"><%= hacker.twitter_id %> on twitter</a></p>
@@ -25,10 +22,15 @@
 <% end %>
 
 </ul>
-<h3>Hacker Tag Cloud</h3>
+
+<% unless defined?(omit_tags) %> 
+
+<h3>Filter hackers by Tag</h3>
 <div id="tag_cloud">
         <% tag_cloud User.tag_counts, %w[s m l] do |tag, css_class| %>
         <%= link_to tag.name, url_builder("/hackers/with/tag/#{tag.name}"), class: css_class %>
         <% end %>
 </div>
+
+<% end %>
 

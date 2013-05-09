@@ -11,9 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130319203732) do
+ActiveRecord::Schema.define(:version => 20130427161720) do
 
-  create_table "affiliations", :id => false, :force => true do |t|
+  create_table "affiliations", :force => true do |t|
     t.integer  "user_id"
     t.integer  "team_id"
     t.boolean  "approved"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20130319203732) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "attendances", :id => false, :force => true do |t|
+  create_table "attendances", :force => true do |t|
     t.integer  "user_id"
     t.integer  "event_id"
     t.boolean  "approved"

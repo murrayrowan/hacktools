@@ -9,7 +9,7 @@ class HacksController < ApplicationController
 
       #get hacks from teams at the specified event which are tagged with tag  
       @hacks = Hack.tagged_with(params[:tag]).where(team_id: Team.select("id").where(event_id: params[:id]))
-     
+      @attendances = Attendance.where("user_id = ?", current_user.id)
     # if an event id, but no tag filter
     elsif params[:id]
       # get the hacks from the teams at the event
@@ -75,7 +75,7 @@ class HacksController < ApplicationController
 
     respond_to do |format|
       if @hack.save
-        format.html { redirect_to @hack, notice: 'Hack was successfully created.' }
+        format.html { redirect_to event_path + '/hacks', notice: 'Hack was successfully created.' }
         format.json { render json: @hack, status: :created, location: @hack }
       else
         format.html { render action: "new" }
