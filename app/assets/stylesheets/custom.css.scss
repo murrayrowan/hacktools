@@ -4,7 +4,7 @@ body { padding-top: 60px; }
 
 /* mixins, variables, etc. */
 
-$grayMediumLight: #eaeaea;
+$lightest: #fff;
 
 /* universal */
 
@@ -14,6 +14,7 @@ $grayMediumLight: #eaeaea;
 
    body {
    padding-top: 60px;
+   background-color:#ececec;
    }
 
    section {
@@ -87,7 +88,7 @@ h2 {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid $grayMediumLight;
+  border-top: 1px solid $grayDarker;
   color: #999;
   
   a {
@@ -112,9 +113,34 @@ footer {
 .hero-unit {
   padding:20px;
   margin-bottom:20px;
+  background-color: $lightest;
 }
 .hero-unit p {
   font-size:16px;
   line-height:20px;
+}
+.thumbnail{
+  box-shadow: 10px 10px 5px #888;
+  background-color:$lightest;
+}
+.breadcrumb{
+    background-color:#fff;
+}
 
+#hacks .porder {
+  border-top-right-radius:5px;
+  position:absolute;
+  top:0;
+  right:0;
+  float:right;
+  height:20px;
+  width:30px;
+  overflow:hidden;
+  padding-top:5px;
+  text-align:center;
+}
+
+.highlight {
+  background-color:#ed2590;
+  color:white;
 }

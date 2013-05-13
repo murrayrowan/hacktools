@@ -11,6 +11,8 @@ gem "authbuttons-rails"
 gem 'simple_form'
 gem "country-select"
 gem 'jquery-ui-rails'
+gem 'ruby-prof', group: :test
+gem 'test-unit', group: :test
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -65,4 +67,4 @@ gem 'acts-as-taggable-on'
 # To use debugger
 # gem 'ruby-debug'
 
-gem "mocha", :group => :test
+gem "mocha", group: :test

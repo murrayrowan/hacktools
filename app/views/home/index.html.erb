@@ -10,8 +10,7 @@
      </div>
       <h3><%= link_to "#{event.name}", eurl %></h3>
 	<p><%= l event.event_date, :format => :long %>.</p>
-	<p><%= event.venue %>, <%= event.street_address %>, <%= event.city %>.</p>
-  <p><%= event.description %></p>
+	<p><%= event.city %></p>
   <div>
     <% if defined?(@attendances) && (attendance_id = registered(@attendances, event.id)) %>
       <%= link_to "Unregister", "/attendances/#{attendance_id}", :method => :delete, :class => "btn btn-primary btn-medium clearfix" %>
@@ -39,8 +38,7 @@
      </div>
       <h3><%= link_to "#{event.name}", eurl %></h3>
   <p><%= l event.event_date, :format => :long %>.</p>
-  <p><%= event.venue %>, <%= event.street_address %>, <%= event.city %>.</p>
-        <p><%= event.description %></p>
+  <p><%= event.city %></p>
   </div>
   </li>
 <% end %>

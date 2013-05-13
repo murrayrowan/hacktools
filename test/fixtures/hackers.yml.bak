@@ -1,0 +1,75 @@
+murray:
+  fname: Murray
+  lname: Rowan
+  city: London
+  country: UK
+  company: SSS
+  jobtitle: Hacker
+  twitter_id: murrayrowan
+  dob: 1973-08-26
+  photo:http://m.c.lnkd.licdn.com/mpr/mpr/shrink_200_200/p/4/000/1ae/20e/2e92e48.jpg 
+anil:
+  fname: Anil
+  lname: Patel
+  city: New York
+  country: USA
+  company: Yahoo!
+  jobtitle: DevRel
+  twitter_id: apatel 
+  dob: 1972-02-20
+  photo: http://m.c.lnkd.licdn.com/mpr/mpr/shrink_200_200/p/4/000/1ae/20e/2e92e48.jpg 
+
+jon:
+  fname: Jon 
+  lname: LeBlank
+  city: San Francisco
+  country: USA
+  company: Yahoo!
+  jobtitle: Technical Yahoo!
+  twitter_id: jlb
+  dob: 1976-05-12
+  photo: http://m.c.lnkd.licdn.com/mpr/mpr/shrink_200_200/p/4/000/1ae/20e/2e92e48.jpg 
+
+ted:           
+  fname: Ted 
+  lname: Drake
+  city: San Francisco 
+  country: USA
+  company: Intuit
+  jobtitle: A11Y evangelist
+  twitter_id: ted_drake
+  dob: 1960-11-12
+  photo: http://m.c.lnkd.licdn.com/mpr/mpr/shrink_200_200/p/4/000/1ae/20e/2e92e48.jpg 
+
+reid:           
+  fname: Reid 
+  lname: Burke
+  city: San Francisco 
+  country: USA
+  company: Yahoo!
+  jobtitle: Technical Yahoo!
+  twitter_id: rburke
+  dob: 1985-10-05
+  photo: http://m.c.lnkd.licdn.com/mpr/mpr/shrink_200_200/p/4/000/1ae/20e/2e92e48.jpg 
+
+norm:
+  fname: Norm
+  lname: Francis
+  city: London
+  country:UK
+  company: GDS
+  jobtitle: Engineer
+  twitter_id: norm
+  dob: 1970-10-05
+  photo: http://m.c.lnkd.licdn.com/mpr/mpr/shrink_200_200/p/4/000/1ae/20e/2e92e48.jpg 
+
+dave:
+  fname: Dave
+  lname: Franc
+  city: London
+  country:UK
+  company: SSS
+  jobtitle: Engineer
+  twitter_id: dave
+  dob: 1970-10-20
+  photo: http://m.c.lnkd.licdn.com/mpr/mpr/shrink_200_200/p/4/000/1ae/20e/2e92e48.jpg
