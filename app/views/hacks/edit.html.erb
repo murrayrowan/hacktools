@@ -1,6 +1,6 @@
-<h1>Editing hack</h1>
+<h1>Update hack details</h1>
 
-<%= render 'form' %>
+<%= render 'form', :method => 'put', :path => update_hack_path, :btn_txt => 'Update Hack' %>
 
 <%= link_to 'Show', @hack %> |
 <%= link_to 'Back', hacks_path %>

@@ -7,7 +7,11 @@ gem 'nifty-generators'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'oauth2'
 gem "authbuttons-rails"
+gem 'omniauth-facebook'
+gem 'twitter'
+gem 'fb_graph'
 gem 'simple_form'
 gem "country-select"
 gem 'jquery-ui-rails'

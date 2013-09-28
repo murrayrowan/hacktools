@@ -1,6 +1,7 @@
 <h1>Editing team</h1>
 
-<%= render 'form' %>
+<%= render 'form', :method => 'put', :path => update_team_path, :btn_txt => 'Update Team' %>
 
 <%= link_to 'Show', @team %> |
 <%= link_to 'Back', teams_path %>
+

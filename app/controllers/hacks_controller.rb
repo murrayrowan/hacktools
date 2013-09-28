@@ -15,7 +15,7 @@ class HacksController < ApplicationController
       # get the hacks from the teams at the event
       # join == 0.1ms
       @hacks = Hack.joins(:team).where(:teams => { :event_id => params[:id] })
-      @attendances = Attendance.where("user_id = ?", current_user.id)
+      @attendances = Attendance.where("user_id = ?", current_user.id) if current_user
 
     # else if there's a tag, but no event id
     elsif params[:tag] and not params[:id]
@@ -45,6 +45,9 @@ class HacksController < ApplicationController
     @team = Team.joins(:hacks).where(:hacks => {:id => params[:hack_id] }).first
 
     @hackers = User.joins(:teams).where(:affiliations => {:team_id => @team.id})
+    @hackers.each do |hacker|
+      @is_owner = true if hacker.id == current_user.id
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -65,7 +68,7 @@ class HacksController < ApplicationController
 
   # GET /hacks/1/edit
   def edit
-    @hack = Hack.find(params[:id])
+    @hack = Hack.find(params[:hack_id])
   end
 
   # POST /hacks
@@ -87,10 +90,11 @@ class HacksController < ApplicationController
   # PUT /hacks/1
   # PUT /hacks/1.json
   def update
-    @hack = Hack.find(params[:id])
+    @hack = Hack.find(params[:hack_id])
 
     respond_to do |format|
       if @hack.update_attributes(params[:hack])
+        #@hack here seems to constuct the redir url wrong - wrong event id err
         format.html { redirect_to @hack, notice: 'Hack was successfully updated.' }
         format.json { head :no_content }
       else

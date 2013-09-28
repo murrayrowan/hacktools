@@ -13,7 +13,7 @@ class TeamsController < ApplicationController
    elsif params[:id]
 
    @teams = Team.where(:event_id => params[:id])
-   @attendances = Attendance.where("user_id = ?", current_user.id)
+   @attendances = Attendance.where("user_id = ?", current_user.id) if current_user 
 
    # select * from teams where id in (select team_id from events_hackers_hacks_teams where event_id = 1); 
    # @teams = Team.where(id: EventsHackersHacksTeams.select("team_id").where(event_id: params[:id]))
@@ -37,6 +37,9 @@ class TeamsController < ApplicationController
     @event = Event.find(params[:id])
     @hacks = Hack.joins(:team).where(:teams => { :id => params[:team_id] })
     @hackers = User.joins(:teams).where(:affiliations => {:team_id => params[:team_id]})
+
+    @affiliation = Affiliation.joins(:user).joins(:team).where(:teams => {:id => params[:team_id]}).where(:users => { :id => current_user.id }).first
+    @is_member = false
 
     respond_to do |format|
       format.html # show.html.erb

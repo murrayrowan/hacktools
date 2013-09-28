@@ -19,6 +19,8 @@ Hacktools::Application.routes.draw do
  # EVENTS INDEX IS HOMEPAGE
 
   #get 'events/:id/:event_name', to: 'events#show', as: :event
+  put 'events/:id/:event_name', to: 'events#update', as: :update_event
+
   match "events/:id/:event_name" => redirect("/events/%{id}/%{event_name}/hackers"), as: :event
 
   get 'events/new', to: 'events#new', as: :new_event
@@ -27,17 +29,20 @@ Hacktools::Application.routes.draw do
 
   get 'events/:id/:event_name/edit', to: 'events#edit', as: :edit_event
 
-  put 'events/:id/:event_name', to: 'events#update', as: :update_event
 
 # HACKS
 
   get 'events/:id/:event_name/hacks', to: 'hacks#index', as: :hacks
+
+  get 'events/:id/:event_name/hacks/:hack_id/:hack_name/edit', to: 'hacks#edit', as: :edit_hack
 
   get 'events/:id/:event_name/hacks/:hack_id/:hack_name', to: 'hacks#show', as: :hack
 
   get 'events/:id/:event_name/new_hack', to: 'hacks#new', as: :new_hack
 
   post 'events/:id/:event_name/hack/create', to: 'hacks#create', as: :create_hack
+
+  put 'events/:id/:event_name/hacks/:hack_id/:hack_name/update', to: 'hacks#update', as: :update_hack
 
 # HACKERS
 
@@ -66,11 +71,15 @@ Hacktools::Application.routes.draw do
 
   get 'events/:id/:event_name/teams/:team_id/:team_name', to: 'teams#show', as: :team
 
+  get 'events/:id/:event_name/teams/:team_id/:team_name/edit', to: 'teams#edit', as: :edit_team
+
   get 'events/:id/:event_name/teams/:team_id/:team_name/:tab_value', to: 'teams#show', as: :team_tabset
 
   get 'events/:id/:event_name/new_team', to: 'teams#new', as: :new_team
 
   post 'events/:id/:event_name/team/create', to: 'teams#create', as: :create_team
+
+  put 'events/:id/:event_name/teams/:team_id/:team_name/update', to: 'teams#update', as: :update_team
 
   # tag routes
 

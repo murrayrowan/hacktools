@@ -7,7 +7,7 @@
   <%= f.input :demo_url, label: "Demo URL" %>
   <%= f.input :source, label: "Source Code URL" %>
   <%= f.input :tag_list, hint: 'comma separated.' %>
-  <%= f.hidden_field :event_id, value: params['id'] %>
+  <%= f.hidden_field :event_id, value: params[:id] %>
   <%= f.error :base %>
   <%= f.button :submit, btn_txt %>
 <% end %>

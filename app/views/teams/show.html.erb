@@ -8,9 +8,31 @@
 
 <h2><%= @team.name %></h2>
 
+<% @hackers.each do |hacker| %>
+  <p>Hackers: <%= hacker.first_name %>
+  <% @is_member = true if hacker.id == current_user.id %>
+<% end  %>
+
 <p><%= @team.description %></p>
 
-<%= link_to "Join team", '', :class => "btn btn-primary btn-large" %>
+<% if @team.photo %>
+  <p><img src="<%= @team.photo %>" height="500" width="400" alt="" style="margin:0 20px 20px 0"></p>
+<% end %>
+
+  <div>
+    <% if @is_member == true %>
+      <%= link_to "Quit Team", "/affiliations/#{@affiliation.id}", :method => :delete, :class => "btn btn-primary btn-medium clearfix" %>
+    <% elsif @is_member == false %>
+      <%= link_to "Join Team", { :controller => 'affiliations',
+  :user_id => current_user.id, :team_id => @team.id}, :method => :post, :class => "btn btn-primary btn-medium clearfix" %>
+    <% else %>
+      <%= link_to "Sign In to Join this team", "/authentications", :class => "btn btn-primary btn-medium clearfix" %>
+    <% end %>
+  </div>
+
+<% if @is_member == true %>
+  <%= link_to "Edit Team Profile", edit_team_path, :class => "btn btn-primary btn-large" %>
+<% end %>
 
 </div>
 

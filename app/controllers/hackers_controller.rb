@@ -21,16 +21,12 @@ class HackersController < ApplicationController
       @hackers = User.joins(:events).where(:attendances => {:event_id => params[:id]})
       
       # used only for the register / unregister button
-      @attendances = Attendance.where("user_id = ?", current_user.id)
+      @attendances = Attendance.where("user_id = ?", current_user.id) if current_user 
     
     elsif params[:tag] and not params[:id]
-
       @hackers = User.tagged_with(params[:tag])
-
     else
-
       @hackers = Hacker.all
-
     end
 
     respond_to do |format|
@@ -49,7 +45,7 @@ class HackersController < ApplicationController
       # show in context of specific event
       @event = Event.find(params[:id]) if params[:id]
       @team = Team.joins(:users).where(:users => {:id => params['id']}).first
-      @hacks = Hack.where("team_id = ?", @team.id)
+     # @hacks = Hack.where("team_id = ?", @team.id)
     else
       # show all events if no event specified
       @attendances = Attendance.where("user_id = ?", params[:hacker_id])
@@ -88,6 +84,7 @@ class HackersController < ApplicationController
   # GET
   def edit
     # trying to make hackers independent of events
+   
     if params[:hacker_id]
       @hacker = User.find(params[:hacker_id])
     elsif User.exists?(:user_id => current_user.id)

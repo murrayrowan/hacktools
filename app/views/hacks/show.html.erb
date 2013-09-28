@@ -22,4 +22,8 @@
 
 <% end %>
 
+<% if @is_owner == true %>
+  <%= link_to "Edit Hack Details", edit_hack_path, :class => "btn btn-primary btn-large" %>
+<% end %>
+
 </div>

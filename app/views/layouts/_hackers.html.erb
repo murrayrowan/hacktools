@@ -10,8 +10,9 @@
      <div class="thumbnail">
   <%= link_to image_tag(hacker.photo, alt: "#{hacker_name} logo", height: 200, width: 300), hacker_show  %>
      <h3><%= link_to hacker_name, hacker_show %></h3>
-        <p><%= hacker.job_title %></p>
-        <p><%= hacker.city + ', ' + hacker.country%></p>
+
+        <p><%= hacker.city + ', ' + hacker.country.to_s %></p>
+
         <p>My tags: <%= raw hacker.tag_list.map { |t| link_to t, url_builder( "/hackers/with/tag/#{t}/") }.join(', ') %></p>
 
         <p><a href="https://twitter.com/<%= hacker.twitter_id %>"><%= hacker.twitter_id %> on twitter</a></p>

@@ -29,15 +29,20 @@
 
   <p><strong>Location:</strong> <%= @event.venue %>, <%= @event.street_address %>, <%= @event.city %>, <%= @event.zipcode %></p>
   <p><strong>Event URL:</strong> <%= link_to @event.url, @event.url %></p>
-  <p><strong>Twitter:</strong> <%= @event.twitter_id %></p>
+  <% if @event.twitter_id != "" %>
+    <p><strong>Twitter:</strong> <%= @event.twitter_id %></p>
+  <% end %>
+<% if  @event.facebook_id != "" %>
   <p><strong>Facebook:</strong> <%= @event.facebook_id %></p>
-
+  <% end %>
 </div>
 
+<% if current_user %>
 <div style="float:right;">
   <%= link_to "Submit a Hack", new_hack_path, :class => "btn btn-primary btn-small" %>
   <%= link_to "Create a Team", new_team_path, :class => "btn btn-primary btn-small" %>
 </div>
+<% end %>
 
 <ul class="nav nav-tabs" id="tabs">
 <% tabs = ['hackers','teams','hacks'] 

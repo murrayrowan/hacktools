@@ -1,6 +1,6 @@
 class AffiliationsController < ApplicationController
   def index
-    @affiliations = Affiliations.all
+    @affiliations = Affiliation.all
   end
 
   def show
@@ -12,9 +12,9 @@ class AffiliationsController < ApplicationController
   end
 
   def create
-    @affiliations = Affiliations.new(params[:affiliations])
+    @affiliations = Affiliation.new(:user_id => params[:user_id], :team_id => params[:team_id])
     if @affiliations.save
-      redirect_to @affiliations, :notice => "Successfully created affiliations."
+      redirect_to :back, :notice => "You have been successfully REGISTERED for this team."
     else
       render :action => 'new'
     end
@@ -36,6 +36,9 @@ class AffiliationsController < ApplicationController
   def destroy
     @affiliations = Affiliation.find(params[:id])
     @affiliations.destroy
-    redirect_to '/', :notice => "You have been successfully unregistered from team."
+    redirect_to :back, :notice => "You have been successfully unregistered from team."
+    rescue ActionController::RedirectBackError
+    redirect_to root_path, :notice => "You have been successfully UNREGISTERED from the team."
   end
+
 end

@@ -20,7 +20,7 @@
 
 <% end %>
 
-<% if current_user.id.to_s == params['hacker_id'] %>
+<% if current_user && current_user.id.to_s == params['hacker_id'] %>
 
 <%= link_to "Edit Your Profile", edit_user_registration_path %>
 
