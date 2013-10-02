@@ -106,16 +106,16 @@ ActiveRecord::Schema.define(:version => 20130427161720) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                              :null => false
-    t.datetime "updated_at",                              :null => false
-    t.string   "first_name"               :default => "", :null => false
-    t.string   "last_name"                :default => "", :null => false
-    t.string   "city"                     :default => "", :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "city"
     t.string   "country"
-    t.string   "job_title"        
+    t.string   "job_title"
     t.string   "company"
-    t.string   "twitter_id"       
-    t.string   "photo"                    :default => "http://www.almostsavvy.com/wp-content/uploads/2011/04/profile-photo.jpg"
+    t.string   "twitter_id"
+    t.string   "photo"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

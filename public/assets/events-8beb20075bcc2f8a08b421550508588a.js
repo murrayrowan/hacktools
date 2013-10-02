@@ -1,0 +1,1 @@
+((function(){jQuery(function(){return $("#event_event_date").datepicker({dateFormat:"yy-mm-dd"})})})).call(this);
