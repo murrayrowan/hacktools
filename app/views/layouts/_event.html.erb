@@ -38,7 +38,7 @@
 </div>
 
 <% if current_user %>
-<div style="float:right;">
+<div style="float:right;" id="action_btns">
   <%= link_to "Submit a Hack", new_hack_path, :class => "btn btn-primary btn-small" %>
   <%= link_to "Create a Team", new_team_path, :class => "btn btn-primary btn-small" %>
 </div>
